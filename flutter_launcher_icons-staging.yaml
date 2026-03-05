@@ -1,0 +1,9 @@
+flutter_launcher_icons:
+  # Substitua pelo ícone real (1024x1024 PNG) com badge visual "STG"
+  image_path: "assets/icons/icon-staging.png"
+  android: true
+  ios: true
+  min_sdk_android: 21
+  remove_alpha_ios: true
+  web:
+    generate: false

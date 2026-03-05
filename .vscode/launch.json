@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Dev",
+      "request": "launch",
+      "type": "dart",
+      "args": ["--flavor", "dev", "--dart-define-from-file", "envs/dev.json"]
+    },
+    {
+      "name": "Staging",
+      "request": "launch",
+      "type": "dart",
+      "args": ["--flavor", "staging", "--dart-define-from-file", "envs/staging.json"]
+    },
+    {
+      "name": "Prod",
+      "request": "launch",
+      "type": "dart",
+      "args": ["--flavor", "prod", "--dart-define-from-file", "envs/prod.json"]
+    }
+  ]
+}

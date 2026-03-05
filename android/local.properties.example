@@ -1,0 +1,9 @@
+# Copie este arquivo para local.properties e preencha as chaves.
+# NÃO commitar local.properties — ela já está no .gitignore do Android.
+
+sdk.dir=/path/to/Android/Sdk
+
+# Maps API Keys por ambiente (obtenha em console.cloud.google.com)
+MAPS_API_KEY_DEV=<sua-chave-dev>
+MAPS_API_KEY_STAGING=<sua-chave-staging>
+MAPS_API_KEY_PROD=<sua-chave-prod>

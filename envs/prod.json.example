@@ -1,0 +1,10 @@
+{
+  "FLAVOR": "prod",
+  "APP_NAME": "CheckIn",
+  "API_BASE_URL": "https://api.checkinapp.com",
+  "WS_URL": "wss://ws.checkinapp.com",
+  "MAPS_API_KEY": "<sua-chave-dart-maps-api>",
+  "MOCK_LOCATION": "false",
+  "SHOW_DEBUG_OVERLAY": "false",
+  "USE_LOCAL_NOTIFICATIONS": "false"
+}

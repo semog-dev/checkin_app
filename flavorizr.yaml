@@ -1,0 +1,34 @@
+app:
+  android:
+    flavorDimensions: "env"
+
+flavors:
+  dev:
+    app:
+      name: "CheckIn Dev"
+    android:
+      applicationId: "com.example.checkin_app.dev"
+      icon: "assets/icons/icon-dev.png"
+    ios:
+      bundleId: "com.example.checkinApp.dev"
+      icon: "assets/icons/icon-dev.png"
+
+  staging:
+    app:
+      name: "CheckIn Staging"
+    android:
+      applicationId: "com.example.checkin_app.staging"
+      icon: "assets/icons/icon-staging.png"
+    ios:
+      bundleId: "com.example.checkinApp.staging"
+      icon: "assets/icons/icon-staging.png"
+
+  prod:
+    app:
+      name: "CheckIn"
+    android:
+      applicationId: "com.example.checkin_app"
+      icon: "assets/icons/icon-prod.png"
+    ios:
+      bundleId: "com.example.checkinApp"
+      icon: "assets/icons/icon-prod.png"

@@ -1,0 +1,10 @@
+{
+  "FLAVOR": "dev",
+  "APP_NAME": "CheckIn Dev",
+  "API_BASE_URL": "http://localhost:3000",
+  "WS_URL": "ws://localhost:3000",
+  "MAPS_API_KEY": "",
+  "MOCK_LOCATION": "true",
+  "SHOW_DEBUG_OVERLAY": "true",
+  "USE_LOCAL_NOTIFICATIONS": "true"
+}

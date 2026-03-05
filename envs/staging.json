@@ -1,0 +1,10 @@
+{
+  "FLAVOR": "staging",
+  "APP_NAME": "CheckIn Staging",
+  "API_BASE_URL": "https://api-staging.checkinapp.com",
+  "WS_URL": "wss://ws-staging.checkinapp.com",
+  "MAPS_API_KEY": "",
+  "MOCK_LOCATION": "false",
+  "SHOW_DEBUG_OVERLAY": "true",
+  "USE_LOCAL_NOTIFICATIONS": "false"
+}

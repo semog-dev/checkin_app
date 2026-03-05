@@ -1,0 +1,9 @@
+flutter_launcher_icons:
+  # Ícone final de produção (1024x1024 PNG), sem badge
+  image_path: "assets/icons/icon-prod.png"
+  android: true
+  ios: true
+  min_sdk_android: 21
+  remove_alpha_ios: true
+  web:
+    generate: false
