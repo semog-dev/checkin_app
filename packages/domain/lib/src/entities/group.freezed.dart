@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,111 +9,67 @@ part of 'group.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Group _$GroupFromJson(Map<String, dynamic> json) {
-  return _Group.fromJson(json);
-}
 
 /// @nodoc
 mixin _$Group {
-  String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get adminId => throw _privateConstructorUsedError;
-  List<String> get memberIds => throw _privateConstructorUsedError;
-  List<String> get placeIds => throw _privateConstructorUsedError;
-  String get inviteCode => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
-
-  /// Serializes this Group to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get id;
+  String get name;
+  String get adminId;
+  List<String> get memberIds;
+  List<String> get placeIds;
+  String get inviteCode;
+  DateTime get createdAt;
 
   /// Create a copy of Group
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $GroupCopyWith<Group> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $GroupCopyWith<$Res> {
-  factory $GroupCopyWith(Group value, $Res Function(Group) then) =
-      _$GroupCopyWithImpl<$Res, Group>;
-  @useResult
-  $Res call(
-      {String id,
-      String name,
-      String adminId,
-      List<String> memberIds,
-      List<String> placeIds,
-      String inviteCode,
-      DateTime createdAt});
-}
-
-/// @nodoc
-class _$GroupCopyWithImpl<$Res, $Val extends Group>
-    implements $GroupCopyWith<$Res> {
-  _$GroupCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Group
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $GroupCopyWith<Group> get copyWith =>
+      _$GroupCopyWithImpl<Group>(this as Group, _$identity);
+
+  /// Serializes this Group to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? adminId = null,
-    Object? memberIds = null,
-    Object? placeIds = null,
-    Object? inviteCode = null,
-    Object? createdAt = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      adminId: null == adminId
-          ? _value.adminId
-          : adminId // ignore: cast_nullable_to_non_nullable
-              as String,
-      memberIds: null == memberIds
-          ? _value.memberIds
-          : memberIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      placeIds: null == placeIds
-          ? _value.placeIds
-          : placeIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      inviteCode: null == inviteCode
-          ? _value.inviteCode
-          : inviteCode // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Group &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.adminId, adminId) || other.adminId == adminId) &&
+            const DeepCollectionEquality().equals(other.memberIds, memberIds) &&
+            const DeepCollectionEquality().equals(other.placeIds, placeIds) &&
+            (identical(other.inviteCode, inviteCode) ||
+                other.inviteCode == inviteCode) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      adminId,
+      const DeepCollectionEquality().hash(memberIds),
+      const DeepCollectionEquality().hash(placeIds),
+      inviteCode,
+      createdAt);
+
+  @override
+  String toString() {
+    return 'Group(id: $id, name: $name, adminId: $adminId, memberIds: $memberIds, placeIds: $placeIds, inviteCode: $inviteCode, createdAt: $createdAt)';
   }
 }
 
 /// @nodoc
-abstract class _$$GroupImplCopyWith<$Res> implements $GroupCopyWith<$Res> {
-  factory _$$GroupImplCopyWith(
-          _$GroupImpl value, $Res Function(_$GroupImpl) then) =
-      __$$GroupImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $GroupCopyWith<$Res> {
+  factory $GroupCopyWith(Group value, $Res Function(Group) _then) =
+      _$GroupCopyWithImpl;
   @useResult
   $Res call(
       {String id,
@@ -126,12 +82,11 @@ abstract class _$$GroupImplCopyWith<$Res> implements $GroupCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$GroupImplCopyWithImpl<$Res>
-    extends _$GroupCopyWithImpl<$Res, _$GroupImpl>
-    implements _$$GroupImplCopyWith<$Res> {
-  __$$GroupImplCopyWithImpl(
-      _$GroupImpl _value, $Res Function(_$GroupImpl) _then)
-      : super(_value, _then);
+class _$GroupCopyWithImpl<$Res> implements $GroupCopyWith<$Res> {
+  _$GroupCopyWithImpl(this._self, this._then);
+
+  final Group _self;
+  final $Res Function(Group) _then;
 
   /// Create a copy of Group
   /// with the given fields replaced by the non-null parameter values.
@@ -146,43 +101,227 @@ class __$$GroupImplCopyWithImpl<$Res>
     Object? inviteCode = null,
     Object? createdAt = null,
   }) {
-    return _then(_$GroupImpl(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       adminId: null == adminId
-          ? _value.adminId
+          ? _self.adminId
           : adminId // ignore: cast_nullable_to_non_nullable
               as String,
       memberIds: null == memberIds
-          ? _value._memberIds
+          ? _self.memberIds
           : memberIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
       placeIds: null == placeIds
-          ? _value._placeIds
+          ? _self.placeIds
           : placeIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
       inviteCode: null == inviteCode
-          ? _value.inviteCode
+          ? _self.inviteCode
           : inviteCode // ignore: cast_nullable_to_non_nullable
               as String,
       createdAt: null == createdAt
-          ? _value.createdAt
+          ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ));
   }
 }
 
+/// Adds pattern-matching-related methods to [Group].
+extension GroupPatterns on Group {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Group value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Group() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Group value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Group():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Group value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Group() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String id,
+            String name,
+            String adminId,
+            List<String> memberIds,
+            List<String> placeIds,
+            String inviteCode,
+            DateTime createdAt)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Group() when $default != null:
+        return $default(_that.id, _that.name, _that.adminId, _that.memberIds,
+            _that.placeIds, _that.inviteCode, _that.createdAt);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String id,
+            String name,
+            String adminId,
+            List<String> memberIds,
+            List<String> placeIds,
+            String inviteCode,
+            DateTime createdAt)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Group():
+        return $default(_that.id, _that.name, _that.adminId, _that.memberIds,
+            _that.placeIds, _that.inviteCode, _that.createdAt);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            String id,
+            String name,
+            String adminId,
+            List<String> memberIds,
+            List<String> placeIds,
+            String inviteCode,
+            DateTime createdAt)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Group() when $default != null:
+        return $default(_that.id, _that.name, _that.adminId, _that.memberIds,
+            _that.placeIds, _that.inviteCode, _that.createdAt);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
-class _$GroupImpl implements _Group {
-  const _$GroupImpl(
+class _Group implements Group {
+  const _Group(
       {required this.id,
       required this.name,
       required this.adminId,
@@ -192,9 +331,7 @@ class _$GroupImpl implements _Group {
       required this.createdAt})
       : _memberIds = memberIds,
         _placeIds = placeIds;
-
-  factory _$GroupImpl.fromJson(Map<String, dynamic> json) =>
-      _$$GroupImplFromJson(json);
+  factory _Group.fromJson(Map<String, dynamic> json) => _$GroupFromJson(json);
 
   @override
   final String id;
@@ -225,16 +362,26 @@ class _$GroupImpl implements _Group {
   @override
   final DateTime createdAt;
 
+  /// Create a copy of Group
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'Group(id: $id, name: $name, adminId: $adminId, memberIds: $memberIds, placeIds: $placeIds, inviteCode: $inviteCode, createdAt: $createdAt)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$GroupCopyWith<_Group> get copyWith =>
+      __$GroupCopyWithImpl<_Group>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$GroupToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GroupImpl &&
+            other is _Group &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.adminId, adminId) || other.adminId == adminId) &&
@@ -259,53 +406,79 @@ class _$GroupImpl implements _Group {
       inviteCode,
       createdAt);
 
-  /// Create a copy of Group
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$GroupImplCopyWith<_$GroupImpl> get copyWith =>
-      __$$GroupImplCopyWithImpl<_$GroupImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$GroupImplToJson(
-      this,
-    );
+  String toString() {
+    return 'Group(id: $id, name: $name, adminId: $adminId, memberIds: $memberIds, placeIds: $placeIds, inviteCode: $inviteCode, createdAt: $createdAt)';
   }
 }
 
-abstract class _Group implements Group {
-  const factory _Group(
-      {required final String id,
-      required final String name,
-      required final String adminId,
-      final List<String> memberIds,
-      final List<String> placeIds,
-      required final String inviteCode,
-      required final DateTime createdAt}) = _$GroupImpl;
+/// @nodoc
+abstract mixin class _$GroupCopyWith<$Res> implements $GroupCopyWith<$Res> {
+  factory _$GroupCopyWith(_Group value, $Res Function(_Group) _then) =
+      __$GroupCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String name,
+      String adminId,
+      List<String> memberIds,
+      List<String> placeIds,
+      String inviteCode,
+      DateTime createdAt});
+}
 
-  factory _Group.fromJson(Map<String, dynamic> json) = _$GroupImpl.fromJson;
+/// @nodoc
+class __$GroupCopyWithImpl<$Res> implements _$GroupCopyWith<$Res> {
+  __$GroupCopyWithImpl(this._self, this._then);
 
-  @override
-  String get id;
-  @override
-  String get name;
-  @override
-  String get adminId;
-  @override
-  List<String> get memberIds;
-  @override
-  List<String> get placeIds;
-  @override
-  String get inviteCode;
-  @override
-  DateTime get createdAt;
+  final _Group _self;
+  final $Res Function(_Group) _then;
 
   /// Create a copy of Group
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GroupImplCopyWith<_$GroupImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? adminId = null,
+    Object? memberIds = null,
+    Object? placeIds = null,
+    Object? inviteCode = null,
+    Object? createdAt = null,
+  }) {
+    return _then(_Group(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      adminId: null == adminId
+          ? _self.adminId
+          : adminId // ignore: cast_nullable_to_non_nullable
+              as String,
+      memberIds: null == memberIds
+          ? _self._memberIds
+          : memberIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      placeIds: null == placeIds
+          ? _self._placeIds
+          : placeIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      inviteCode: null == inviteCode
+          ? _self.inviteCode
+          : inviteCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
 }
+
+// dart format on

@@ -6,8 +6,8 @@ part of 'geofence_zone.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GeofenceZoneImpl _$$GeofenceZoneImplFromJson(Map<String, dynamic> json) =>
-    _$GeofenceZoneImpl(
+_GeofenceZone _$GeofenceZoneFromJson(Map<String, dynamic> json) =>
+    _GeofenceZone(
       id: json['id'] as String,
       placeId: json['placeId'] as String,
       lat: (json['lat'] as num).toDouble(),
@@ -16,7 +16,7 @@ _$GeofenceZoneImpl _$$GeofenceZoneImplFromJson(Map<String, dynamic> json) =>
       isActive: json['isActive'] as bool? ?? true,
     );
 
-Map<String, dynamic> _$$GeofenceZoneImplToJson(_$GeofenceZoneImpl instance) =>
+Map<String, dynamic> _$GeofenceZoneToJson(_GeofenceZone instance) =>
     <String, dynamic>{
       'id': instance.id,
       'placeId': instance.placeId,

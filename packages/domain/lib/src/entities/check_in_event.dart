@@ -6,7 +6,7 @@ part 'check_in_event.g.dart';
 enum CheckInEventType { enter, exit }
 
 @freezed
-class CheckInEvent with _$CheckInEvent {
+abstract class CheckInEvent with _$CheckInEvent {
   const factory CheckInEvent({
     required String id,
     required String userId,

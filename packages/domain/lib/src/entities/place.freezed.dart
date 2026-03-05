@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,125 +9,74 @@ part of 'place.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Place _$PlaceFromJson(Map<String, dynamic> json) {
-  return _Place.fromJson(json);
-}
 
 /// @nodoc
 mixin _$Place {
-  String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get ownerId => throw _privateConstructorUsedError;
-  double get lat => throw _privateConstructorUsedError;
-  double get lng => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-  List<String> get memberIds => throw _privateConstructorUsedError;
-  PlaceCategory get category => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
-
-  /// Serializes this Place to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get id;
+  String get name;
+  String get ownerId;
+  double get lat;
+  double get lng;
+  String? get description;
+  List<String> get memberIds;
+  PlaceCategory get category;
+  DateTime get createdAt;
 
   /// Create a copy of Place
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $PlaceCopyWith<Place> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PlaceCopyWith<$Res> {
-  factory $PlaceCopyWith(Place value, $Res Function(Place) then) =
-      _$PlaceCopyWithImpl<$Res, Place>;
-  @useResult
-  $Res call(
-      {String id,
-      String name,
-      String ownerId,
-      double lat,
-      double lng,
-      String? description,
-      List<String> memberIds,
-      PlaceCategory category,
-      DateTime createdAt});
-}
-
-/// @nodoc
-class _$PlaceCopyWithImpl<$Res, $Val extends Place>
-    implements $PlaceCopyWith<$Res> {
-  _$PlaceCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Place
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $PlaceCopyWith<Place> get copyWith =>
+      _$PlaceCopyWithImpl<Place>(this as Place, _$identity);
+
+  /// Serializes this Place to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? ownerId = null,
-    Object? lat = null,
-    Object? lng = null,
-    Object? description = freezed,
-    Object? memberIds = null,
-    Object? category = null,
-    Object? createdAt = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      ownerId: null == ownerId
-          ? _value.ownerId
-          : ownerId // ignore: cast_nullable_to_non_nullable
-              as String,
-      lat: null == lat
-          ? _value.lat
-          : lat // ignore: cast_nullable_to_non_nullable
-              as double,
-      lng: null == lng
-          ? _value.lng
-          : lng // ignore: cast_nullable_to_non_nullable
-              as double,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      memberIds: null == memberIds
-          ? _value.memberIds
-          : memberIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as PlaceCategory,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Place &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.lng, lng) || other.lng == lng) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            const DeepCollectionEquality().equals(other.memberIds, memberIds) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      ownerId,
+      lat,
+      lng,
+      description,
+      const DeepCollectionEquality().hash(memberIds),
+      category,
+      createdAt);
+
+  @override
+  String toString() {
+    return 'Place(id: $id, name: $name, ownerId: $ownerId, lat: $lat, lng: $lng, description: $description, memberIds: $memberIds, category: $category, createdAt: $createdAt)';
   }
 }
 
 /// @nodoc
-abstract class _$$PlaceImplCopyWith<$Res> implements $PlaceCopyWith<$Res> {
-  factory _$$PlaceImplCopyWith(
-          _$PlaceImpl value, $Res Function(_$PlaceImpl) then) =
-      __$$PlaceImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $PlaceCopyWith<$Res> {
+  factory $PlaceCopyWith(Place value, $Res Function(Place) _then) =
+      _$PlaceCopyWithImpl;
   @useResult
   $Res call(
       {String id,
@@ -142,12 +91,11 @@ abstract class _$$PlaceImplCopyWith<$Res> implements $PlaceCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$PlaceImplCopyWithImpl<$Res>
-    extends _$PlaceCopyWithImpl<$Res, _$PlaceImpl>
-    implements _$$PlaceImplCopyWith<$Res> {
-  __$$PlaceImplCopyWithImpl(
-      _$PlaceImpl _value, $Res Function(_$PlaceImpl) _then)
-      : super(_value, _then);
+class _$PlaceCopyWithImpl<$Res> implements $PlaceCopyWith<$Res> {
+  _$PlaceCopyWithImpl(this._self, this._then);
+
+  final Place _self;
+  final $Res Function(Place) _then;
 
   /// Create a copy of Place
   /// with the given fields replaced by the non-null parameter values.
@@ -164,51 +112,265 @@ class __$$PlaceImplCopyWithImpl<$Res>
     Object? category = null,
     Object? createdAt = null,
   }) {
-    return _then(_$PlaceImpl(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       ownerId: null == ownerId
-          ? _value.ownerId
+          ? _self.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
               as String,
       lat: null == lat
-          ? _value.lat
+          ? _self.lat
           : lat // ignore: cast_nullable_to_non_nullable
               as double,
       lng: null == lng
-          ? _value.lng
+          ? _self.lng
           : lng // ignore: cast_nullable_to_non_nullable
               as double,
       description: freezed == description
-          ? _value.description
+          ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
       memberIds: null == memberIds
-          ? _value._memberIds
+          ? _self.memberIds
           : memberIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
       category: null == category
-          ? _value.category
+          ? _self.category
           : category // ignore: cast_nullable_to_non_nullable
               as PlaceCategory,
       createdAt: null == createdAt
-          ? _value.createdAt
+          ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ));
   }
 }
 
+/// Adds pattern-matching-related methods to [Place].
+extension PlacePatterns on Place {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Place value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Place() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Place value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Place():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Place value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Place() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String id,
+            String name,
+            String ownerId,
+            double lat,
+            double lng,
+            String? description,
+            List<String> memberIds,
+            PlaceCategory category,
+            DateTime createdAt)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Place() when $default != null:
+        return $default(
+            _that.id,
+            _that.name,
+            _that.ownerId,
+            _that.lat,
+            _that.lng,
+            _that.description,
+            _that.memberIds,
+            _that.category,
+            _that.createdAt);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String id,
+            String name,
+            String ownerId,
+            double lat,
+            double lng,
+            String? description,
+            List<String> memberIds,
+            PlaceCategory category,
+            DateTime createdAt)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Place():
+        return $default(
+            _that.id,
+            _that.name,
+            _that.ownerId,
+            _that.lat,
+            _that.lng,
+            _that.description,
+            _that.memberIds,
+            _that.category,
+            _that.createdAt);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            String id,
+            String name,
+            String ownerId,
+            double lat,
+            double lng,
+            String? description,
+            List<String> memberIds,
+            PlaceCategory category,
+            DateTime createdAt)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _Place() when $default != null:
+        return $default(
+            _that.id,
+            _that.name,
+            _that.ownerId,
+            _that.lat,
+            _that.lng,
+            _that.description,
+            _that.memberIds,
+            _that.category,
+            _that.createdAt);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
-class _$PlaceImpl implements _Place {
-  const _$PlaceImpl(
+class _Place implements Place {
+  const _Place(
       {required this.id,
       required this.name,
       required this.ownerId,
@@ -219,9 +381,7 @@ class _$PlaceImpl implements _Place {
       this.category = PlaceCategory.other,
       required this.createdAt})
       : _memberIds = memberIds;
-
-  factory _$PlaceImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PlaceImplFromJson(json);
+  factory _Place.fromJson(Map<String, dynamic> json) => _$PlaceFromJson(json);
 
   @override
   final String id;
@@ -250,16 +410,26 @@ class _$PlaceImpl implements _Place {
   @override
   final DateTime createdAt;
 
+  /// Create a copy of Place
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'Place(id: $id, name: $name, ownerId: $ownerId, lat: $lat, lng: $lng, description: $description, memberIds: $memberIds, category: $category, createdAt: $createdAt)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PlaceCopyWith<_Place> get copyWith =>
+      __$PlaceCopyWithImpl<_Place>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PlaceToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PlaceImpl &&
+            other is _Place &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
@@ -289,59 +459,91 @@ class _$PlaceImpl implements _Place {
       category,
       createdAt);
 
-  /// Create a copy of Place
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$PlaceImplCopyWith<_$PlaceImpl> get copyWith =>
-      __$$PlaceImplCopyWithImpl<_$PlaceImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PlaceImplToJson(
-      this,
-    );
+  String toString() {
+    return 'Place(id: $id, name: $name, ownerId: $ownerId, lat: $lat, lng: $lng, description: $description, memberIds: $memberIds, category: $category, createdAt: $createdAt)';
   }
 }
 
-abstract class _Place implements Place {
-  const factory _Place(
-      {required final String id,
-      required final String name,
-      required final String ownerId,
-      required final double lat,
-      required final double lng,
-      final String? description,
-      final List<String> memberIds,
-      final PlaceCategory category,
-      required final DateTime createdAt}) = _$PlaceImpl;
+/// @nodoc
+abstract mixin class _$PlaceCopyWith<$Res> implements $PlaceCopyWith<$Res> {
+  factory _$PlaceCopyWith(_Place value, $Res Function(_Place) _then) =
+      __$PlaceCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String name,
+      String ownerId,
+      double lat,
+      double lng,
+      String? description,
+      List<String> memberIds,
+      PlaceCategory category,
+      DateTime createdAt});
+}
 
-  factory _Place.fromJson(Map<String, dynamic> json) = _$PlaceImpl.fromJson;
+/// @nodoc
+class __$PlaceCopyWithImpl<$Res> implements _$PlaceCopyWith<$Res> {
+  __$PlaceCopyWithImpl(this._self, this._then);
 
-  @override
-  String get id;
-  @override
-  String get name;
-  @override
-  String get ownerId;
-  @override
-  double get lat;
-  @override
-  double get lng;
-  @override
-  String? get description;
-  @override
-  List<String> get memberIds;
-  @override
-  PlaceCategory get category;
-  @override
-  DateTime get createdAt;
+  final _Place _self;
+  final $Res Function(_Place) _then;
 
   /// Create a copy of Place
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PlaceImplCopyWith<_$PlaceImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? ownerId = null,
+    Object? lat = null,
+    Object? lng = null,
+    Object? description = freezed,
+    Object? memberIds = null,
+    Object? category = null,
+    Object? createdAt = null,
+  }) {
+    return _then(_Place(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      ownerId: null == ownerId
+          ? _self.ownerId
+          : ownerId // ignore: cast_nullable_to_non_nullable
+              as String,
+      lat: null == lat
+          ? _self.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as double,
+      lng: null == lng
+          ? _self.lng
+          : lng // ignore: cast_nullable_to_non_nullable
+              as double,
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      memberIds: null == memberIds
+          ? _self._memberIds
+          : memberIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      category: null == category
+          ? _self.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as PlaceCategory,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
 }
+
+// dart format on

@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,107 +9,60 @@ part of 'geofence_zone.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-GeofenceZone _$GeofenceZoneFromJson(Map<String, dynamic> json) {
-  return _GeofenceZone.fromJson(json);
-}
 
 /// @nodoc
 mixin _$GeofenceZone {
-  String get id => throw _privateConstructorUsedError;
-  String get placeId => throw _privateConstructorUsedError;
-  double get lat => throw _privateConstructorUsedError;
-  double get lng => throw _privateConstructorUsedError;
-  double get radiusMeters => throw _privateConstructorUsedError;
-  bool get isActive => throw _privateConstructorUsedError;
-
-  /// Serializes this GeofenceZone to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get id;
+  String get placeId;
+  double get lat;
+  double get lng;
+  double get radiusMeters;
+  bool get isActive;
 
   /// Create a copy of GeofenceZone
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $GeofenceZoneCopyWith<GeofenceZone> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $GeofenceZoneCopyWith<$Res> {
-  factory $GeofenceZoneCopyWith(
-          GeofenceZone value, $Res Function(GeofenceZone) then) =
-      _$GeofenceZoneCopyWithImpl<$Res, GeofenceZone>;
-  @useResult
-  $Res call(
-      {String id,
-      String placeId,
-      double lat,
-      double lng,
-      double radiusMeters,
-      bool isActive});
-}
-
-/// @nodoc
-class _$GeofenceZoneCopyWithImpl<$Res, $Val extends GeofenceZone>
-    implements $GeofenceZoneCopyWith<$Res> {
-  _$GeofenceZoneCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of GeofenceZone
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $GeofenceZoneCopyWith<GeofenceZone> get copyWith =>
+      _$GeofenceZoneCopyWithImpl<GeofenceZone>(
+          this as GeofenceZone, _$identity);
+
+  /// Serializes this GeofenceZone to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? id = null,
-    Object? placeId = null,
-    Object? lat = null,
-    Object? lng = null,
-    Object? radiusMeters = null,
-    Object? isActive = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      placeId: null == placeId
-          ? _value.placeId
-          : placeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      lat: null == lat
-          ? _value.lat
-          : lat // ignore: cast_nullable_to_non_nullable
-              as double,
-      lng: null == lng
-          ? _value.lng
-          : lng // ignore: cast_nullable_to_non_nullable
-              as double,
-      radiusMeters: null == radiusMeters
-          ? _value.radiusMeters
-          : radiusMeters // ignore: cast_nullable_to_non_nullable
-              as double,
-      isActive: null == isActive
-          ? _value.isActive
-          : isActive // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is GeofenceZone &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.placeId, placeId) || other.placeId == placeId) &&
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.lng, lng) || other.lng == lng) &&
+            (identical(other.radiusMeters, radiusMeters) ||
+                other.radiusMeters == radiusMeters) &&
+            (identical(other.isActive, isActive) ||
+                other.isActive == isActive));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, placeId, lat, lng, radiusMeters, isActive);
+
+  @override
+  String toString() {
+    return 'GeofenceZone(id: $id, placeId: $placeId, lat: $lat, lng: $lng, radiusMeters: $radiusMeters, isActive: $isActive)';
   }
 }
 
 /// @nodoc
-abstract class _$$GeofenceZoneImplCopyWith<$Res>
-    implements $GeofenceZoneCopyWith<$Res> {
-  factory _$$GeofenceZoneImplCopyWith(
-          _$GeofenceZoneImpl value, $Res Function(_$GeofenceZoneImpl) then) =
-      __$$GeofenceZoneImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $GeofenceZoneCopyWith<$Res> {
+  factory $GeofenceZoneCopyWith(
+          GeofenceZone value, $Res Function(GeofenceZone) _then) =
+      _$GeofenceZoneCopyWithImpl;
   @useResult
   $Res call(
       {String id,
@@ -121,12 +74,11 @@ abstract class _$$GeofenceZoneImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$GeofenceZoneImplCopyWithImpl<$Res>
-    extends _$GeofenceZoneCopyWithImpl<$Res, _$GeofenceZoneImpl>
-    implements _$$GeofenceZoneImplCopyWith<$Res> {
-  __$$GeofenceZoneImplCopyWithImpl(
-      _$GeofenceZoneImpl _value, $Res Function(_$GeofenceZoneImpl) _then)
-      : super(_value, _then);
+class _$GeofenceZoneCopyWithImpl<$Res> implements $GeofenceZoneCopyWith<$Res> {
+  _$GeofenceZoneCopyWithImpl(this._self, this._then);
+
+  final GeofenceZone _self;
+  final $Res Function(GeofenceZone) _then;
 
   /// Create a copy of GeofenceZone
   /// with the given fields replaced by the non-null parameter values.
@@ -140,48 +92,213 @@ class __$$GeofenceZoneImplCopyWithImpl<$Res>
     Object? radiusMeters = null,
     Object? isActive = null,
   }) {
-    return _then(_$GeofenceZoneImpl(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       placeId: null == placeId
-          ? _value.placeId
+          ? _self.placeId
           : placeId // ignore: cast_nullable_to_non_nullable
               as String,
       lat: null == lat
-          ? _value.lat
+          ? _self.lat
           : lat // ignore: cast_nullable_to_non_nullable
               as double,
       lng: null == lng
-          ? _value.lng
+          ? _self.lng
           : lng // ignore: cast_nullable_to_non_nullable
               as double,
       radiusMeters: null == radiusMeters
-          ? _value.radiusMeters
+          ? _self.radiusMeters
           : radiusMeters // ignore: cast_nullable_to_non_nullable
               as double,
       isActive: null == isActive
-          ? _value.isActive
+          ? _self.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
 }
 
+/// Adds pattern-matching-related methods to [GeofenceZone].
+extension GeofenceZonePatterns on GeofenceZone {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_GeofenceZone value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _GeofenceZone() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_GeofenceZone value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GeofenceZone():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_GeofenceZone value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GeofenceZone() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String id, String placeId, double lat, double lng,
+            double radiusMeters, bool isActive)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _GeofenceZone() when $default != null:
+        return $default(_that.id, _that.placeId, _that.lat, _that.lng,
+            _that.radiusMeters, _that.isActive);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String id, String placeId, double lat, double lng,
+            double radiusMeters, bool isActive)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GeofenceZone():
+        return $default(_that.id, _that.placeId, _that.lat, _that.lng,
+            _that.radiusMeters, _that.isActive);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String id, String placeId, double lat, double lng,
+            double radiusMeters, bool isActive)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GeofenceZone() when $default != null:
+        return $default(_that.id, _that.placeId, _that.lat, _that.lng,
+            _that.radiusMeters, _that.isActive);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
-class _$GeofenceZoneImpl implements _GeofenceZone {
-  const _$GeofenceZoneImpl(
+class _GeofenceZone implements GeofenceZone {
+  const _GeofenceZone(
       {required this.id,
       required this.placeId,
       required this.lat,
       required this.lng,
       this.radiusMeters = 100.0,
       this.isActive = true});
-
-  factory _$GeofenceZoneImpl.fromJson(Map<String, dynamic> json) =>
-      _$$GeofenceZoneImplFromJson(json);
+  factory _GeofenceZone.fromJson(Map<String, dynamic> json) =>
+      _$GeofenceZoneFromJson(json);
 
   @override
   final String id;
@@ -198,16 +315,26 @@ class _$GeofenceZoneImpl implements _GeofenceZone {
   @JsonKey()
   final bool isActive;
 
+  /// Create a copy of GeofenceZone
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'GeofenceZone(id: $id, placeId: $placeId, lat: $lat, lng: $lng, radiusMeters: $radiusMeters, isActive: $isActive)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$GeofenceZoneCopyWith<_GeofenceZone> get copyWith =>
+      __$GeofenceZoneCopyWithImpl<_GeofenceZone>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$GeofenceZoneToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GeofenceZoneImpl &&
+            other is _GeofenceZone &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.placeId, placeId) || other.placeId == placeId) &&
             (identical(other.lat, lat) || other.lat == lat) &&
@@ -223,51 +350,76 @@ class _$GeofenceZoneImpl implements _GeofenceZone {
   int get hashCode =>
       Object.hash(runtimeType, id, placeId, lat, lng, radiusMeters, isActive);
 
-  /// Create a copy of GeofenceZone
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$GeofenceZoneImplCopyWith<_$GeofenceZoneImpl> get copyWith =>
-      __$$GeofenceZoneImplCopyWithImpl<_$GeofenceZoneImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$GeofenceZoneImplToJson(
-      this,
-    );
+  String toString() {
+    return 'GeofenceZone(id: $id, placeId: $placeId, lat: $lat, lng: $lng, radiusMeters: $radiusMeters, isActive: $isActive)';
   }
 }
 
-abstract class _GeofenceZone implements GeofenceZone {
-  const factory _GeofenceZone(
-      {required final String id,
-      required final String placeId,
-      required final double lat,
-      required final double lng,
-      final double radiusMeters,
-      final bool isActive}) = _$GeofenceZoneImpl;
+/// @nodoc
+abstract mixin class _$GeofenceZoneCopyWith<$Res>
+    implements $GeofenceZoneCopyWith<$Res> {
+  factory _$GeofenceZoneCopyWith(
+          _GeofenceZone value, $Res Function(_GeofenceZone) _then) =
+      __$GeofenceZoneCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String placeId,
+      double lat,
+      double lng,
+      double radiusMeters,
+      bool isActive});
+}
 
-  factory _GeofenceZone.fromJson(Map<String, dynamic> json) =
-      _$GeofenceZoneImpl.fromJson;
+/// @nodoc
+class __$GeofenceZoneCopyWithImpl<$Res>
+    implements _$GeofenceZoneCopyWith<$Res> {
+  __$GeofenceZoneCopyWithImpl(this._self, this._then);
 
-  @override
-  String get id;
-  @override
-  String get placeId;
-  @override
-  double get lat;
-  @override
-  double get lng;
-  @override
-  double get radiusMeters;
-  @override
-  bool get isActive;
+  final _GeofenceZone _self;
+  final $Res Function(_GeofenceZone) _then;
 
   /// Create a copy of GeofenceZone
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GeofenceZoneImplCopyWith<_$GeofenceZoneImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? placeId = null,
+    Object? lat = null,
+    Object? lng = null,
+    Object? radiusMeters = null,
+    Object? isActive = null,
+  }) {
+    return _then(_GeofenceZone(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      placeId: null == placeId
+          ? _self.placeId
+          : placeId // ignore: cast_nullable_to_non_nullable
+              as String,
+      lat: null == lat
+          ? _self.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as double,
+      lng: null == lng
+          ? _self.lng
+          : lng // ignore: cast_nullable_to_non_nullable
+              as double,
+      radiusMeters: null == radiusMeters
+          ? _self.radiusMeters
+          : radiusMeters // ignore: cast_nullable_to_non_nullable
+              as double,
+      isActive: null == isActive
+          ? _self.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
+
+// dart format on

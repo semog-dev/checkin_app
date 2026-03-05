@@ -6,7 +6,7 @@ part 'place.g.dart';
 enum PlaceCategory { home, work, gym, restaurant, shop, other }
 
 @freezed
-class Place with _$Place {
+abstract class Place with _$Place {
   const factory Place({
     required String id,
     required String name,

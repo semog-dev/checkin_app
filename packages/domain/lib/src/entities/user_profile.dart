@@ -6,7 +6,7 @@ part 'user_profile.g.dart';
 enum UserStatus { online, offline, busy, away }
 
 @freezed
-class UserProfile with _$UserProfile {
+abstract class UserProfile with _$UserProfile {
   const factory UserProfile({
     required String uid,
     required String displayName,
