@@ -26,14 +26,23 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Instalar dependências
-        run: flutter pub get
+      - name: Ativar Melos
+        run: dart pub global activate melos
+
+      - name: Bootstrap (instalar dependências)
+        run: melos bootstrap
+
+      - name: Codegen
+        run: melos run codegen
 
       - name: Verificar formatação
-        run: dart format --output=none --check .
+        run: melos run format:check
 
-      - name: Análise estática
-        run: flutter analyze --fatal-warnings
+      - name: Análise estática — packages
+        run: melos run analyze
+
+      - name: Análise estática — app
+        run: melos run analyze:app
 
   # ─────────────────────────────────────────────────────────────
   # Job 2 — Testes
@@ -51,11 +60,20 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Instalar dependências
-        run: flutter pub get
+      - name: Ativar Melos
+        run: dart pub global activate melos
 
-      - name: Executar testes com cobertura
-        run: flutter test --coverage --reporter=expanded
+      - name: Bootstrap (instalar dependências)
+        run: melos bootstrap
+
+      - name: Codegen
+        run: melos run codegen
+
+      - name: Testes — packages
+        run: melos run test
+
+      - name: Testes — app com cobertura
+        run: melos run test:app
 
       - name: Upload cobertura para Codecov
         uses: codecov/codecov-action@v4
@@ -92,8 +110,14 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Instalar dependências
-        run: flutter pub get
+      - name: Ativar Melos
+        run: dart pub global activate melos
+
+      - name: Bootstrap (instalar dependências)
+        run: melos bootstrap
+
+      - name: Codegen
+        run: melos run codegen
 
       - name: Build APK — ${{ matrix.flavor }}
         run: |
@@ -109,7 +133,7 @@ jobs:
   # Secrets necessários no repositório:
   #   PROD_API_BASE_URL       — ex: https://api.checkinapp.com
   #   PROD_WS_URL             — ex: wss://ws.checkinapp.com
-  #   PROD_MAPS_API_KEY       — chave Dart (flutter_map / google_maps)
+  #   PROD_MAPS_API_KEY       — chave Dart (flutter_map)
   #   PROD_MAPS_API_KEY_NATIVE — chave Android nativa (AndroidManifest)
   # ─────────────────────────────────────────────────────────────
   build-prod:
@@ -131,8 +155,14 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Instalar dependências
-        run: flutter pub get
+      - name: Ativar Melos
+        run: dart pub global activate melos
+
+      - name: Bootstrap (instalar dependências)
+        run: melos bootstrap
+
+      - name: Codegen
+        run: melos run codegen
 
       - name: Gerar envs/prod.json a partir de secrets
         run: |

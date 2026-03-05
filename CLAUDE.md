@@ -5,20 +5,49 @@ App Flutter de "Check-in Inteligente": o usuário cadastra locais no mapa, o app
 
 Funcionalidades previstas: geofencing, background location, WebSockets, push notifications inteligentes, mapas nativos.
 
-## Stack
+## Stack (decisões tomadas)
 - **Framework**: Flutter / Dart
-- **Backend**: não decidido (candidatos: Firebase, Supabase, servidor próprio)
-- **Mapas**: não decidido (candidatos: `google_maps_flutter`, `flutter_map`)
-- **State management**: não decidido
+- **Backend**: Firebase (firebase_core, firebase_auth, cloud_firestore, firebase_messaging)
+- **Mapas**: `flutter_map` + `latlong2`
+- **State management**: Riverpod (`flutter_riverpod` + `riverpod_annotation` + `riverpod_generator`)
+- **Navegação**: `go_router`
+- **Storage local**: `hive_flutter`
+- **Geolocation**: `geolocator`
+- **Notificações locais**: `flutter_local_notifications`
+
+## Arquitetura — Monorepo com Melos
+```
+checkin_app/           ← app Flutter (entry point)
+packages/
+  domain/              ← Dart puro: entities, repositories (interfaces), use cases
+  core/                ← Flutter: theme, router, AppConfig, AppLogger, extensions
+```
+
+### Regras de dependência
+- `domain` não depende de nada interno
+- `core` depende de `domain`
+- `app` depende de `core` e `domain`
+- Features dentro de `lib/features/` são independentes entre si (comunicam via shared state)
 
 ## Como rodar
 ```bash
+make bootstrap    # dart pub global activate melos && melos bootstrap
+make codegen      # build_runner em todos os packages
+make analyze      # format:check + analyze + analyze:app
+make test         # testes de packages + app
+
 make run-dev      # flavor dev  + envs/dev.json
 make run-staging  # flavor staging + envs/staging.json
 make run-prod     # flavor prod + envs/prod.json
 make build-prod   # APK de produção
 make icons-all    # Gerar ícones (requer PNGs em assets/icons/)
 ```
+
+## Codegen
+Os arquivos `.g.dart` e `.freezed.dart` **são commitados** (não estão no .gitignore).
+Sempre rodar `make codegen` após:
+- Adicionar/modificar entities com `@freezed`
+- Adicionar/modificar providers com `@riverpod`
 
 ## Ambientes (Flavors)
 Três ambientes isolados via `--dart-define-from-file` + Android `productFlavors` + iOS schemes:
@@ -31,24 +60,34 @@ Três ambientes isolados via `--dart-define-from-file` + Android `productFlavors
 
 ### Adicionar uma nova variável de ambiente
 1. Adicionar nos três arquivos `envs/{dev,staging,prod}.json` e em `envs/prod.json.example`
-2. Expor como `static const` em `lib/core/config/app_config.dart` via `String.fromEnvironment()` ou `bool.fromEnvironment()`
+2. Expor como `static const` em `packages/core/lib/src/config/app_config.dart`
 
 ## Arquivos críticos
-- `lib/core/config/app_config.dart` — toda config e feature flags vêm daqui
-- `lib/core/logger/app_logger.dart` — usar `AppLogger` em vez de `print()`
+- `packages/core/lib/src/config/app_config.dart` — toda config e feature flags
+- `packages/core/lib/src/logger/app_logger.dart` — usar `AppLogger` em vez de `print()`
+- `packages/domain/lib/domain.dart` — barrel de entities, repositories, use cases
+- `packages/core/lib/src/router/app_router.dart` — GoRouter com `@riverpod`
+- `lib/bootstrap.dart` — inicialização (Firebase comentado até `flutterfire configure`)
 - `android/app/build.gradle.kts` — flavors Android + leitura de `local.properties`
-- `android/local.properties` — chaves nativas por ambiente (não commitada; usar `.example` como template)
+- `android/local.properties` — chaves nativas por ambiente (não commitada; usar `.example`)
 - `envs/*.json` — valores Dart por ambiente (`prod.json` está no `.gitignore`)
+- `melos.yaml` — scripts de monorepo
 - `ios/Runner.xcodeproj/project.pbxproj` — build configurations iOS por flavor
 
 ## Convenções de código
 - `AppLogger.d/i/w/e()` para todos os logs — nunca `print()` diretamente
 - Feature flags em `AppConfig` (compile-time `bool.fromEnvironment`) — nunca checar `AppConfig.isDev` para lógica de negócio
-- Estrutura de pastas: `lib/core/` para infraestrutura, `lib/features/{nome}/` para features
-- Arquivos de feature: `data/`, `domain/`, `presentation/` dentro de cada feature
+- Sempre `package:` imports absolutos — nunca imports relativos
+- Sempre `@riverpod` para providers — nunca declarar `Provider` manualmente
+- Estrutura de feature: `lib/features/{nome}/{data,domain,presentation}/`
+- Features são independentes entre si — sem imports cruzados entre features
 
 ## O que não fazer
 - Não commitar `envs/prod.json` nem `android/local.properties`
 - Não usar `print()` — usar `AppLogger`
 - Não checar `kDebugMode` para separar comportamento por ambiente — usar `AppConfig.flavor`
-- Não adicionar dependências sem considerar compatibilidade com background execution (geofencing requer pacotes específicos)
+- Não adicionar dependências sem considerar compatibilidade com background execution
+- Não usar imports relativos — sempre `package:` imports
+- Não declarar providers manualmente — sempre `@riverpod`
+- Não criar imports entre features (`lib/features/auth/` não importa de `lib/features/places/`)
+- Não habilitar `Firebase.initializeApp()` antes de rodar `flutterfire configure`

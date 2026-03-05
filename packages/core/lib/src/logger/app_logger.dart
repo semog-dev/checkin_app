@@ -1,4 +1,4 @@
-import '../config/app_config.dart';
+import 'package:core/src/config/app_config.dart';
 
 /// Logger com nível por ambiente.
 /// - DEBUG  → só em dev
@@ -28,7 +28,9 @@ abstract final class AppLogger {
     Object? error,
     StackTrace? stackTrace,
   ) {
-    final buffer = StringBuffer('[${AppConfig.flavor.toUpperCase()}][$level] $message');
+    final buffer = StringBuffer(
+      '[${AppConfig.flavor.toUpperCase()}][$level] $message',
+    );
     if (error != null) buffer.write('\n  Error: $error');
     if (stackTrace != null) buffer.write('\n$stackTrace');
     // ignore: avoid_print
