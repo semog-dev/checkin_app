@@ -27,7 +27,7 @@ jobs:
           cache: true
 
       - name: Ativar Melos
-        run: dart pub global activate melos
+        run: dart pub global activate melos 7.4.0
 
       - name: Bootstrap (instalar dependências)
         run: melos bootstrap
@@ -61,7 +61,7 @@ jobs:
           cache: true
 
       - name: Ativar Melos
-        run: dart pub global activate melos
+        run: dart pub global activate melos 7.4.0
 
       - name: Bootstrap (instalar dependências)
         run: melos bootstrap
@@ -111,7 +111,7 @@ jobs:
           cache: true
 
       - name: Ativar Melos
-        run: dart pub global activate melos
+        run: dart pub global activate melos 7.4.0
 
       - name: Bootstrap (instalar dependências)
         run: melos bootstrap
@@ -156,7 +156,7 @@ jobs:
           cache: true
 
       - name: Ativar Melos
-        run: dart pub global activate melos
+        run: dart pub global activate melos 7.4.0
 
       - name: Bootstrap (instalar dependências)
         run: melos bootstrap
