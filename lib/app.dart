@@ -1,4 +1,5 @@
-import 'package:core/core.dart';
+import 'package:checkin_app/router/app_router.dart';
+import 'package:core/core.dart' hide appRouterProvider;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
