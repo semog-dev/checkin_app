@@ -85,7 +85,7 @@ void main() {
 
         for (final color in colors) {
           expect(
-            color.alpha,
+            (color.a * 255.0).round().clamp(0, 255),
             255,
             reason: '$color deve ter alpha = 255',
           );

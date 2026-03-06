@@ -1,3 +1,4 @@
+import 'package:domain/src/repositories/auth_repository.dart';
 import 'package:domain/src/use_cases/watch_auth_state.dart';
 import 'package:test/test.dart';
 
@@ -53,7 +54,7 @@ void main() {
   });
 }
 
-class _MultiEmitMockAuthRepository implements MockAuthRepository {
+class _MultiEmitMockAuthRepository implements AuthRepository {
   _MultiEmitMockAuthRepository(this._stream);
 
   final Stream<String?> _stream;
@@ -69,7 +70,4 @@ class _MultiEmitMockAuthRepository implements MockAuthRepository {
 
   @override
   Future<void> signOut() async {}
-
-  @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }

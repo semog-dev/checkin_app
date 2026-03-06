@@ -56,7 +56,9 @@ void main() {
     group('distinção entre temas', () {
       test('light e dark têm brilhos diferentes', () {
         expect(
-            AppTheme.light.brightness, isNot(equals(AppTheme.dark.brightness)));
+          AppTheme.light.brightness,
+          isNot(equals(AppTheme.dark.brightness)),
+        );
       });
 
       test('light e dark são instâncias diferentes', () {
@@ -82,11 +84,11 @@ void main() {
 
     group('integração com AppColors', () {
       test('AppColors.primary não é transparente', () {
-        expect(AppColors.primary.alpha, 255);
+        expect((AppColors.primary.a * 255.0).round().clamp(0, 255), 255);
       });
 
       test('AppColors.error não é transparente', () {
-        expect(AppColors.error.alpha, 255);
+        expect((AppColors.error.a * 255.0).round().clamp(0, 255), 255);
       });
     });
   });
