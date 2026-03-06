@@ -97,5 +97,5 @@ melos:
       run: melos exec -- dart format .
       description: Formata código em todos os packages
     format:check:
-      run: melos exec -- dart format --output=none --check .
+      run: melos exec -- dart format --output=none --set-exit-if-changed .
       description: Verifica formatação em todos os packages
