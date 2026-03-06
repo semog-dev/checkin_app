@@ -1,6 +1,8 @@
 import 'package:checkin_app/features/auth/presentation/pages/home_page.dart';
 import 'package:checkin_app/features/auth/presentation/pages/login_page.dart';
 import 'package:checkin_app/features/auth/presentation/providers/auth_provider.dart';
+import 'package:checkin_app/features/places/presentation/pages/add_place_page.dart';
+import 'package:checkin_app/features/places/presentation/pages/places_page.dart';
 import 'package:core/core.dart' show AppRoutes;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,8 +30,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         builder: (_, __) => const HomePage(),
       ),
       GoRoute(
+        path: AppRoutes.places,
+        builder: (_, __) => const PlacesPage(),
+      ),
+      GoRoute(
         path: AppRoutes.addPlace,
-        builder: (_, __) => const _PlaceholderPage(title: 'Add Place'),
+        builder: (_, __) => const AddPlacePage(),
       ),
       GoRoute(
         path: AppRoutes.placeDetail,
