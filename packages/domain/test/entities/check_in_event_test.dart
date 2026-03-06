@@ -56,7 +56,8 @@ void main() {
       });
 
       test('hashCode é consistente para objetos iguais', () {
-        expect(makeCheckInEvent().hashCode, equals(makeCheckInEvent().hashCode));
+        expect(
+            makeCheckInEvent().hashCode, equals(makeCheckInEvent().hashCode));
       });
     });
 

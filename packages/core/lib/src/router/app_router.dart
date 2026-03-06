@@ -24,8 +24,7 @@ final appRouterProvider = Provider<GoRouter>(
       ),
       GoRoute(
         path: AppRoutes.addPlace,
-        builder: (context, state) =>
-            const _PlaceholderPage(title: 'Add Place'),
+        builder: (context, state) => const _PlaceholderPage(title: 'Add Place'),
       ),
       GoRoute(
         path: AppRoutes.placeDetail,
@@ -37,8 +36,7 @@ final appRouterProvider = Provider<GoRouter>(
       ),
       GoRoute(
         path: AppRoutes.settings,
-        builder: (context, state) =>
-            const _PlaceholderPage(title: 'Settings'),
+        builder: (context, state) => const _PlaceholderPage(title: 'Settings'),
       ),
     ],
   ),
@@ -49,8 +47,8 @@ class _SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const Scaffold(
-    body: Center(child: CircularProgressIndicator()),
-  );
+        body: Center(child: CircularProgressIndicator()),
+      );
 }
 
 class _PlaceholderPage extends StatelessWidget {
@@ -60,7 +58,7 @@ class _PlaceholderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text(title)),
-    body: Center(child: Text(title)),
-  );
+        appBar: AppBar(title: Text(title)),
+        body: Center(child: Text(title)),
+      );
 }

@@ -19,17 +19,18 @@ Place makePlace({
   List<String> memberIds = const [],
   PlaceCategory category = PlaceCategory.home,
   DateTime? createdAt,
-}) => Place(
-  id: id,
-  name: name,
-  ownerId: ownerId,
-  lat: lat,
-  lng: lng,
-  description: description,
-  memberIds: memberIds,
-  category: category,
-  createdAt: createdAt ?? kTestDate,
-);
+}) =>
+    Place(
+      id: id,
+      name: name,
+      ownerId: ownerId,
+      lat: lat,
+      lng: lng,
+      description: description,
+      memberIds: memberIds,
+      category: category,
+      createdAt: createdAt ?? kTestDate,
+    );
 
 // ─── UserProfile ──────────────────────────────────────────────────────────────
 
@@ -41,15 +42,16 @@ UserProfile makeUserProfile({
   UserStatus status = UserStatus.online,
   List<String> groupIds = const [],
   DateTime? lastSeenAt,
-}) => UserProfile(
-  uid: uid,
-  displayName: displayName,
-  email: email,
-  photoUrl: photoUrl,
-  status: status,
-  groupIds: groupIds,
-  lastSeenAt: lastSeenAt,
-);
+}) =>
+    UserProfile(
+      uid: uid,
+      displayName: displayName,
+      email: email,
+      photoUrl: photoUrl,
+      status: status,
+      groupIds: groupIds,
+      lastSeenAt: lastSeenAt,
+    );
 
 // ─── Group ────────────────────────────────────────────────────────────────────
 
@@ -61,15 +63,16 @@ Group makeGroup({
   List<String> placeIds = const [],
   String inviteCode = 'ABC123',
   DateTime? createdAt,
-}) => Group(
-  id: id,
-  name: name,
-  adminId: adminId,
-  memberIds: memberIds,
-  placeIds: placeIds,
-  inviteCode: inviteCode,
-  createdAt: createdAt ?? kTestDate,
-);
+}) =>
+    Group(
+      id: id,
+      name: name,
+      adminId: adminId,
+      memberIds: memberIds,
+      placeIds: placeIds,
+      inviteCode: inviteCode,
+      createdAt: createdAt ?? kTestDate,
+    );
 
 // ─── CheckInEvent ─────────────────────────────────────────────────────────────
 
@@ -80,14 +83,15 @@ CheckInEvent makeCheckInEvent({
   CheckInEventType type = CheckInEventType.enter,
   DateTime? timestamp,
   double? accuracyMeters,
-}) => CheckInEvent(
-  id: id,
-  userId: userId,
-  placeId: placeId,
-  type: type,
-  timestamp: timestamp ?? kTestDate,
-  accuracyMeters: accuracyMeters,
-);
+}) =>
+    CheckInEvent(
+      id: id,
+      userId: userId,
+      placeId: placeId,
+      type: type,
+      timestamp: timestamp ?? kTestDate,
+      accuracyMeters: accuracyMeters,
+    );
 
 // ─── GeofenceZone ─────────────────────────────────────────────────────────────
 
@@ -98,11 +102,12 @@ GeofenceZone makeGeofenceZone({
   double lng = -46.6333,
   double radiusMeters = 100.0,
   bool isActive = true,
-}) => GeofenceZone(
-  id: id,
-  placeId: placeId,
-  lat: lat,
-  lng: lng,
-  radiusMeters: radiusMeters,
-  isActive: isActive,
-);
+}) =>
+    GeofenceZone(
+      id: id,
+      placeId: placeId,
+      lat: lat,
+      lng: lng,
+      radiusMeters: radiusMeters,
+      isActive: isActive,
+    );

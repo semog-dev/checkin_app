@@ -5,13 +5,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 Place _makePlace({String id = 'p1', String name = 'Casa'}) => Place(
-  id: id,
-  name: name,
-  ownerId: 'user-1',
-  lat: -23.5505,
-  lng: -46.6333,
-  createdAt: DateTime(2024, 6, 15),
-);
+      id: id,
+      name: name,
+      ownerId: 'user-1',
+      lat: -23.5505,
+      lng: -46.6333,
+      createdAt: DateTime(2024, 6, 15),
+    );
 
 class _FakePlaceRepository implements PlaceRepository {
   List<Place> placesToEmit = [];
@@ -66,7 +66,8 @@ void main() {
       final container = _makeContainer(_FakePlaceRepository());
       addTearDown(container.dispose);
 
-      expect(container.read(placesNotifierProvider), const PlacesState.loading());
+      expect(
+          container.read(placesNotifierProvider), const PlacesState.loading());
     });
 
     test('carrega lista de locais do repositório', () async {
@@ -121,9 +122,7 @@ void main() {
       final container = _makeContainer(repo);
       addTearDown(container.dispose);
 
-      await container
-          .read(placesNotifierProvider.notifier)
-          .deletePlace('p1');
+      await container.read(placesNotifierProvider.notifier).deletePlace('p1');
 
       expect(repo.lastDeletedId, 'p1');
     });

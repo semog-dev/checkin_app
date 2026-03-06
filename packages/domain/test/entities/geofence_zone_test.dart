@@ -69,7 +69,8 @@ void main() {
       });
 
       test('hashCode é consistente para objetos iguais', () {
-        expect(makeGeofenceZone().hashCode, equals(makeGeofenceZone().hashCode));
+        expect(
+            makeGeofenceZone().hashCode, equals(makeGeofenceZone().hashCode));
       });
     });
 

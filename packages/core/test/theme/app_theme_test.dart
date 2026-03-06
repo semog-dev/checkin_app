@@ -55,7 +55,8 @@ void main() {
 
     group('distinção entre temas', () {
       test('light e dark têm brilhos diferentes', () {
-        expect(AppTheme.light.brightness, isNot(equals(AppTheme.dark.brightness)));
+        expect(
+            AppTheme.light.brightness, isNot(equals(AppTheme.dark.brightness)));
       });
 
       test('light e dark são instâncias diferentes', () {

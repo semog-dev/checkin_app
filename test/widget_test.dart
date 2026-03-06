@@ -29,7 +29,9 @@ void main() {
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
-    testWidgets('não exibe debug banner em produção (AppConfig.isDev = true nos testes)', (
+    testWidgets(
+        'não exibe debug banner em produção (AppConfig.isDev = true nos testes)',
+        (
       tester,
     ) async {
       await tester.pumpWidget(const ProviderScope(child: CheckInApp()));
@@ -40,7 +42,8 @@ void main() {
       expect(find.byType(CheckInApp), findsOneWidget);
     });
 
-    testWidgets('ProviderScope isolado não afeta outros testes', (tester) async {
+    testWidgets('ProviderScope isolado não afeta outros testes',
+        (tester) async {
       await tester.pumpWidget(const ProviderScope(child: CheckInApp()));
       await tester.pump();
 

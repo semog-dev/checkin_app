@@ -173,7 +173,8 @@ class _SlowAuthRepository implements AuthRepository {
   Future<void> signInWithEmailAndPassword({
     required String email,
     required String password,
-  }) => Future.delayed(const Duration(seconds: 10));
+  }) =>
+      Future.delayed(const Duration(seconds: 10));
 
   @override
   Future<void> signOut() async {}

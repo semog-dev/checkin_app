@@ -18,7 +18,8 @@ void main() {
       });
 
       test('aplica valores padrão', () {
-        final place = makePlace(description: null, memberIds: [], category: PlaceCategory.other);
+        final place = makePlace(
+            description: null, memberIds: [], category: PlaceCategory.other);
 
         expect(place.description, isNull);
         expect(place.memberIds, isEmpty);

@@ -3,13 +3,13 @@ import 'package:domain/src/entities/place.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 Place _makePlace({String id = 'p1', String name = 'Casa'}) => Place(
-  id: id,
-  name: name,
-  ownerId: 'user-1',
-  lat: -23.5505,
-  lng: -46.6333,
-  createdAt: DateTime(2024, 6, 15),
-);
+      id: id,
+      name: name,
+      ownerId: 'user-1',
+      lat: -23.5505,
+      lng: -46.6333,
+      createdAt: DateTime(2024, 6, 15),
+    );
 
 void main() {
   group('PlacesState', () {
@@ -40,7 +40,8 @@ void main() {
 
     group('igualdade', () {
       test('loading() == loading()', () {
-        expect(const PlacesState.loading(), equals(const PlacesState.loading()));
+        expect(
+            const PlacesState.loading(), equals(const PlacesState.loading()));
       });
 
       test('loaded com mesmas listas são iguais', () {

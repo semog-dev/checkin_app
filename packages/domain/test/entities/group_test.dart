@@ -80,7 +80,8 @@ void main() {
 
       test('pode adicionar membros via copyWith', () {
         final original = makeGroup(memberIds: ['u1']);
-        final updated = original.copyWith(memberIds: [...original.memberIds, 'u2']);
+        final updated =
+            original.copyWith(memberIds: [...original.memberIds, 'u2']);
         expect(updated.memberIds, ['u1', 'u2']);
       });
     });

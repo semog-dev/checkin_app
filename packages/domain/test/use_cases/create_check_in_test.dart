@@ -48,7 +48,8 @@ void main() {
     });
 
     test('preserva userId e placeId no evento gravado', () async {
-      final event = makeCheckInEvent(userId: 'u-especial', placeId: 'p-especial');
+      final event =
+          makeCheckInEvent(userId: 'u-especial', placeId: 'p-especial');
 
       await useCase(event);
 
