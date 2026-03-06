@@ -1,3 +1,4 @@
+import 'package:checkin_app/features/auth/presentation/pages/home_page.dart';
 import 'package:checkin_app/features/auth/presentation/pages/login_page.dart';
 import 'package:checkin_app/features/auth/presentation/providers/auth_provider.dart';
 import 'package:core/core.dart' show AppRoutes;
@@ -24,7 +25,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: AppRoutes.home,
-        builder: (_, __) => const _PlaceholderPage(title: 'Home'),
+        builder: (_, __) => const HomePage(),
       ),
       GoRoute(
         path: AppRoutes.addPlace,
