@@ -1,9 +1,11 @@
 import 'package:checkin_app/app.dart';
 import 'package:checkin_app/bootstrap.dart';
-import 'package:checkin_app/features/auth/data/repositories/fake_auth_repository.dart';
+import 'package:checkin_app/features/auth/data/repositories/firebase_auth_repository.dart';
 import 'package:checkin_app/features/auth/presentation/providers/auth_provider.dart';
-import 'package:checkin_app/features/places/data/repositories/fake_place_repository.dart';
+import 'package:checkin_app/features/places/data/repositories/firebase_place_repository.dart';
 import 'package:checkin_app/features/places/presentation/providers/places_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -13,10 +15,12 @@ void main() async {
   runApp(
     ProviderScope(
       overrides: [
-        // TODO: substituir por FirebaseAuthRepository após `flutterfire configure`
-        authRepositoryProvider.overrideWithValue(FakeAuthRepository()),
-        // TODO: substituir por FirebasePlaceRepository após `flutterfire configure`
-        placeRepositoryProvider.overrideWithValue(FakePlaceRepository()),
+        authRepositoryProvider.overrideWithValue(
+          FirebaseAuthRepository(FirebaseAuth.instance),
+        ),
+        placeRepositoryProvider.overrideWithValue(
+          FirebasePlaceRepository(FirebaseFirestore.instance),
+        ),
       ],
       child: const CheckInApp(),
     ),

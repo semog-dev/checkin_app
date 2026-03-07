@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "44830797272",
+    "project_id": "checkin-app-4bdd1",
+    "storage_bucket": "checkin-app-4bdd1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44830797272:android:2840485b39ffd4bb0296ad",
+        "android_client_info": {
+          "package_name": "com.example.checkin_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMGa0ZHXToXU3kaO5RmuT2fdJG7WMoR4Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44830797272:android:2840485b39ffd4bb0296ad",
+        "android_client_info": {
+          "package_name": "com.example.checkin_app.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMGa0ZHXToXU3kaO5RmuT2fdJG7WMoR4Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44830797272:android:2840485b39ffd4bb0296ad",
+        "android_client_info": {
+          "package_name": "com.example.checkin_app.staging"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMGa0ZHXToXU3kaO5RmuT2fdJG7WMoR4Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
