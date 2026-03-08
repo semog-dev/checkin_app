@@ -25,6 +25,17 @@ class FakeAuthRepository implements AuthRepository {
   }
 
   @override
+  Future<String> signUpWithEmailAndPassword({
+    required String email,
+    required String password,
+    required String displayName,
+  }) async {
+    _currentUid = 'fake-uid-${email.split('@').first}';
+    _controller.add(_currentUid);
+    return _currentUid!;
+  }
+
+  @override
   Future<void> signOut() async {
     _currentUid = null;
     _controller.add(null);

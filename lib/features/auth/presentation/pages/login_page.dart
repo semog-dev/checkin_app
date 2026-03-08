@@ -1,6 +1,8 @@
 import 'package:checkin_app/features/auth/presentation/providers/auth_provider.dart';
+import 'package:core/core.dart' show AppRoutes;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -75,6 +77,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     onPressed: _submit,
                     child: const Text('Entrar'),
                   ),
+            const SizedBox(height: 8),
+            TextButton(
+              onPressed: () => context.push(AppRoutes.register),
+              child: const Text('Criar conta'),
+            ),
           ],
         ),
       ),

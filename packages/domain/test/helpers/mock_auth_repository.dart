@@ -25,6 +25,16 @@ class MockAuthRepository implements AuthRepository {
   }
 
   @override
+  Future<String> signUpWithEmailAndPassword({
+    required String email,
+    required String password,
+    required String displayName,
+  }) async {
+    if (errorToThrow != null) throw errorToThrow!;
+    return 'mock-uid';
+  }
+
+  @override
   Future<void> signOut() async {
     if (errorToThrow != null) throw errorToThrow!;
     signOutCalled = true;

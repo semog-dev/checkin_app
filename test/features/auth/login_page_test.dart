@@ -22,6 +22,14 @@ class _FakeAuthRepository implements AuthRepository {
   }
 
   @override
+  Future<String> signUpWithEmailAndPassword({
+    required String email,
+    required String password,
+    required String displayName,
+  }) async =>
+      'mock-uid';
+
+  @override
   Future<void> signOut() async {}
 }
 
@@ -178,6 +186,14 @@ class _SlowAuthRepository implements AuthRepository {
     required String password,
   }) =>
       Future.delayed(const Duration(seconds: 10));
+
+  @override
+  Future<String> signUpWithEmailAndPassword({
+    required String email,
+    required String password,
+    required String displayName,
+  }) async =>
+      'mock-uid';
 
   @override
   Future<void> signOut() async {}

@@ -22,6 +22,7 @@ export 'package:domain/src/use_cases/get_user_profile.dart';
 export 'package:domain/src/use_cases/join_group.dart';
 export 'package:domain/src/use_cases/sign_in.dart';
 export 'package:domain/src/use_cases/sign_out.dart';
+export 'package:domain/src/use_cases/sign_up.dart';
 export 'package:domain/src/use_cases/watch_auth_state.dart';
 export 'package:domain/src/use_cases/watch_geofence_events.dart';
 export 'package:domain/src/use_cases/watch_group_status.dart';

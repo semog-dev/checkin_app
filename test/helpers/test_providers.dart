@@ -1,7 +1,7 @@
 import 'package:checkin_app/app.dart';
 import 'package:checkin_app/features/auth/presentation/providers/auth_provider.dart';
 import 'package:checkin_app/features/geofencing/presentation/providers/geofencing_provider.dart';
-import 'package:checkin_app/features/group/presentation/providers/group_provider.dart';
+import 'package:checkin_app/features/group/presentation/providers/group_provider.dart' show groupRepositoryProvider;
 import 'package:checkin_app/features/notifications/data/services/messaging_service.dart';
 import 'package:checkin_app/features/notifications/data/services/notification_service.dart';
 import 'package:checkin_app/features/notifications/presentation/providers/notification_provider.dart';
@@ -21,6 +21,14 @@ class FakeAuthRepository implements AuthRepository {
     required String email,
     required String password,
   }) async {}
+
+  @override
+  Future<String> signUpWithEmailAndPassword({
+    required String email,
+    required String password,
+    required String displayName,
+  }) async =>
+      'fake-uid';
 
   @override
   Future<void> signOut() async {}

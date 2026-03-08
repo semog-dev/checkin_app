@@ -1,20 +1,19 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:checkin_app/features/auth/presentation/providers/auth_provider.dart';
 import 'package:checkin_app/features/places/presentation/providers/places_provider.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// ── Repository providers ──────────────────────────────────────────────────────
+// ── Repository provider ───────────────────────────────────────────────────────
 
 final groupRepositoryProvider = Provider<GroupRepository>(
   (ref) => throw UnimplementedError('groupRepositoryProvider not overridden'),
 );
 
-final userRepositoryProvider = Provider<UserRepository>(
-  (ref) => throw UnimplementedError('userRepositoryProvider not overridden'),
-);
+// userRepositoryProvider vive em auth_provider.dart
 
 // ── GroupsState ───────────────────────────────────────────────────────────────
 

@@ -78,6 +78,10 @@ final authRepositoryProvider = Provider<AuthRepository>(
   (ref) => const _NoopAuthRepository(),
 );
 
+final userRepositoryProvider = Provider<UserRepository>(
+  (ref) => throw UnimplementedError('userRepositoryProvider not overridden'),
+);
+
 final authNotifierProvider =
     NotifierProvider<AuthNotifier, AuthState>(AuthNotifier.new);
 
@@ -94,6 +98,14 @@ class _NoopAuthRepository implements AuthRepository {
     required String email,
     required String password,
   }) async {}
+
+  @override
+  Future<String> signUpWithEmailAndPassword({
+    required String email,
+    required String password,
+    required String displayName,
+  }) async =>
+      '';
 
   @override
   Future<void> signOut() async {}
@@ -130,6 +142,33 @@ class AuthNotifier extends Notifier<AuthState> {
       await ref.read(authRepositoryProvider).signInWithEmailAndPassword(
             email: email,
             password: password,
+          );
+    } catch (e) {
+      state = AuthState.error(message: e.toString());
+    }
+  }
+
+  Future<void> signUp({
+    required String email,
+    required String password,
+    required String displayName,
+  }) async {
+    try {
+      final uid = await ref
+          .read(authRepositoryProvider)
+          .signUpWithEmailAndPassword(
+            email: email,
+            password: password,
+            displayName: displayName,
+          );
+      // Cria o UserProfile no Firestore logo após o cadastro
+      await ref.read(userRepositoryProvider).updateProfile(
+            UserProfile(
+              uid: uid,
+              displayName: displayName,
+              email: email,
+              status: UserStatus.offline,
+            ),
           );
     } catch (e) {
       state = AuthState.error(message: e.toString());

@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:checkin_app/features/auth/presentation/providers/auth_provider.dart';
 import 'package:checkin_app/features/geofencing/data/services/geofence_service.dart';
-import 'package:checkin_app/features/group/presentation/providers/group_provider.dart';
 import 'package:checkin_app/features/notifications/presentation/providers/notification_provider.dart';
 import 'package:checkin_app/features/places/presentation/providers/places_provider.dart';
 import 'package:core/core.dart';

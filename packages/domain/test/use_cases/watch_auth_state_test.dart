@@ -69,5 +69,13 @@ class _MultiEmitMockAuthRepository implements AuthRepository {
   }) async {}
 
   @override
+  Future<String> signUpWithEmailAndPassword({
+    required String email,
+    required String password,
+    required String displayName,
+  }) async =>
+      'mock-uid';
+
+  @override
   Future<void> signOut() async {}
 }

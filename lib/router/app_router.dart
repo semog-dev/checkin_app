@@ -1,5 +1,6 @@
 import 'package:checkin_app/features/auth/presentation/pages/home_page.dart';
 import 'package:checkin_app/features/auth/presentation/pages/login_page.dart';
+import 'package:checkin_app/features/auth/presentation/pages/register_page.dart';
 import 'package:checkin_app/features/auth/presentation/providers/auth_provider.dart';
 import 'package:checkin_app/features/group/presentation/pages/create_group_page.dart';
 import 'package:checkin_app/features/group/presentation/pages/group_detail_page.dart';
@@ -28,6 +29,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.login,
         builder: (_, __) => const LoginPage(),
+      ),
+      GoRoute(
+        path: AppRoutes.register,
+        builder: (_, __) => const RegisterPage(),
       ),
       GoRoute(
         path: AppRoutes.home,
