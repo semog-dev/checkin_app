@@ -85,6 +85,11 @@ final userRepositoryProvider = Provider<UserRepository>(
 final authNotifierProvider =
     NotifierProvider<AuthNotifier, AuthState>(AuthNotifier.new);
 
+final currentUserProfileProvider = StreamProvider<UserProfile?>((ref) {
+  final repo = ref.watch(userRepositoryProvider);
+  return repo.watchCurrentUser();
+});
+
 // ── Noop default (usado em testes sem override) ───────────────────────────────
 
 class _NoopAuthRepository implements AuthRepository {
