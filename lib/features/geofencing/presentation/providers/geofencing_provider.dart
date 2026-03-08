@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:checkin_app/features/geofencing/data/services/geofence_service.dart';
+import 'package:checkin_app/features/notifications/presentation/providers/notification_provider.dart';
 import 'package:checkin_app/features/places/presentation/providers/places_provider.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -202,5 +203,19 @@ class GeofencingNotifier extends Notifier<GeofencingState> {
 
     state = GeofencingMonitoring(insidePlaceIds: updated);
     ref.read(checkInRepositoryProvider).recordEvent(event);
+
+    // Notificação local
+    final placesState = ref.read(placesNotifierProvider);
+    final places = switch (placesState) {
+      PlacesLoaded(:final places) => places,
+      _ => <Place>[],
+    };
+    final place = places.where((p) => p.id == event.placeId).firstOrNull;
+    if (place != null) {
+      ref.read(notificationServiceProvider).showCheckIn(
+            placeName: place.name,
+            type: event.type,
+          );
+    }
   }
 }
