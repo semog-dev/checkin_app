@@ -31,6 +31,10 @@ scripts:
     run: melos exec --depends-on="test" -- dart test
     description: Testes unitários em todos os packages
 
+  test:core:
+    run: melos exec --scope="core" -- flutter test
+    description: Testes do package core com Flutter test runner
+
   test:app:
     run: flutter test --coverage --reporter=expanded
     description: Testes do app principal com cobertura

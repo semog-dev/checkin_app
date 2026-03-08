@@ -1,3 +1,4 @@
+import 'package:checkin_app/features/geofencing/presentation/widgets/geofencing_status_bar.dart';
 import 'package:checkin_app/features/places/presentation/providers/places_provider.dart';
 import 'package:core/core.dart' show AppRoutes;
 import 'package:domain/domain.dart';
@@ -12,16 +13,39 @@ class PlacesPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final placesAsync = ref.watch(placesProvider);
+    final state = ref.watch(placesNotifierProvider);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Meus locais')),
-      body: placesAsync.when(
+      body: Column(
+        children: [
+          const GeofencingStatusBar(),
+          Expanded(
+            child: state.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, _) => Center(child: Text('Erro: $e')),
-        data: (places) => places.isEmpty
-            ? const _EmptyState()
-            : _PlacesContent(places: places),
+        error: (message) => Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                key: const Key('places_error_message'),
+                'Erro: $message',
+              ),
+              const SizedBox(height: 12),
+              ElevatedButton(
+                key: const Key('retry_button'),
+                onPressed: () => ref.invalidate(placesNotifierProvider),
+                child: const Text('Tentar novamente'),
+              ),
+            ],
+          ),
+        ),
+          loaded: (places) => places.isEmpty
+                  ? const _EmptyState()
+                  : _PlacesContent(places: places),
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         key: const Key('add_place_fab'),
@@ -38,6 +62,7 @@ class _EmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
+      key: Key('empty_places_message'),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -102,6 +127,7 @@ class _PlacesContent extends ConsumerWidget {
             itemBuilder: (context, index) {
               final place = places[index];
               return ListTile(
+                key: const Key('place_card'),
                 leading: const Icon(Icons.place),
                 title: Text(place.name),
                 subtitle: Text(place.category.name),
@@ -109,7 +135,7 @@ class _PlacesContent extends ConsumerWidget {
                   icon: const Icon(Icons.delete_outline),
                   onPressed: () => ref
                       .read(placesNotifierProvider.notifier)
-                      .delete(place.id),
+                      .deletePlace(place.id),
                 ),
               );
             },

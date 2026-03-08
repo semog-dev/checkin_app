@@ -1,6 +1,62 @@
 import 'package:checkin_app/features/auth/presentation/providers/auth_provider.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+// ── PlacesState ───────────────────────────────────────────────────────────────
+
+sealed class PlacesState {
+  const PlacesState();
+
+  const factory PlacesState.loading() = PlacesLoading;
+  const factory PlacesState.loaded({required List<Place> places}) = PlacesLoaded;
+  const factory PlacesState.error({required String message}) = PlacesError;
+
+  T when<T>({
+    required T Function() loading,
+    required T Function(List<Place> places) loaded,
+    required T Function(String message) error,
+  }) =>
+      switch (this) {
+        PlacesLoading() => loading(),
+        PlacesLoaded(:final places) => loaded(places),
+        PlacesError(:final message) => error(message),
+      };
+}
+
+final class PlacesLoading extends PlacesState {
+  const PlacesLoading();
+
+  @override
+  bool operator ==(Object other) => other is PlacesLoading;
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+final class PlacesLoaded extends PlacesState {
+  const PlacesLoaded({required this.places});
+  final List<Place> places;
+
+  @override
+  bool operator ==(Object other) =>
+      other is PlacesLoaded && listEquals(other.places, places);
+
+  @override
+  int get hashCode => Object.hashAll(places);
+}
+
+final class PlacesError extends PlacesState {
+  const PlacesError({required this.message});
+  final String message;
+
+  @override
+  bool operator ==(Object other) =>
+      other is PlacesError && other.message == message;
+
+  @override
+  int get hashCode => message.hashCode;
+}
 
 // ── Repository ────────────────────────────────────────────────────────────────
 
@@ -8,52 +64,47 @@ final placeRepositoryProvider = Provider<PlaceRepository>(
   (ref) => throw UnimplementedError('placeRepositoryProvider not overridden'),
 );
 
-// ── Places stream ─────────────────────────────────────────────────────────────
+// ── Current user ID ───────────────────────────────────────────────────────────
 
-final placesProvider = StreamProvider<List<Place>>((ref) {
+final currentUserIdProvider = Provider<String?>((ref) {
   final authState = ref.watch(authNotifierProvider);
-  final uid = authState is AuthAuthenticated ? authState.uid : null;
-  if (uid == null) return const Stream.empty();
-
-  final repository = ref.watch(placeRepositoryProvider);
-  return GetPlaces(repository)(uid);
+  return authState is AuthAuthenticated ? authState.uid : null;
 });
 
-// ── Notifier (create / delete) ────────────────────────────────────────────────
+// ── Notifier ──────────────────────────────────────────────────────────────────
 
 final placesNotifierProvider =
-    NotifierProvider<PlacesNotifier, void>(PlacesNotifier.new);
+    NotifierProvider<PlacesNotifier, PlacesState>(PlacesNotifier.new);
 
-class PlacesNotifier extends Notifier<void> {
+class PlacesNotifier extends Notifier<PlacesState> {
   @override
-  void build() {}
+  PlacesState build() {
+    final uid = ref.watch(currentUserIdProvider);
+    if (uid == null) return const PlacesState.loading();
 
-  Future<void> create({
-    required String name,
-    required double lat,
-    required double lng,
-    String? description,
-    PlaceCategory category = PlaceCategory.other,
-  }) async {
-    final authState = ref.read(authNotifierProvider);
-    final uid = authState is AuthAuthenticated ? authState.uid : null;
-    if (uid == null) return;
-
-    final place = Place(
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
-      name: name,
-      ownerId: uid,
-      lat: lat,
-      lng: lng,
-      description: description,
-      category: category,
-      createdAt: DateTime.now(),
+    final repo = ref.watch(placeRepositoryProvider);
+    final sub = repo.watchPlaces(uid).listen(
+      (places) => state = PlacesState.loaded(places: places),
+      onError: (Object e) => state = PlacesState.error(message: e.toString()),
     );
+    ref.onDispose(sub.cancel);
 
-    await CreatePlace(ref.read(placeRepositoryProvider))(place);
+    return const PlacesState.loading();
   }
 
-  Future<void> delete(String id) async {
-    await ref.read(placeRepositoryProvider).deletePlace(id);
+  Future<void> createPlace(Place place) async {
+    try {
+      await ref.read(placeRepositoryProvider).createPlace(place);
+    } catch (e) {
+      state = PlacesState.error(message: e.toString());
+    }
+  }
+
+  Future<void> deletePlace(String id) async {
+    try {
+      await ref.read(placeRepositoryProvider).deletePlace(id);
+    } catch (e) {
+      state = PlacesState.error(message: e.toString());
+    }
   }
 }

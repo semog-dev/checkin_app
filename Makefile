@@ -23,6 +23,7 @@ analyze:
 
 test:
 	melos run test
+	melos run test:core
 	melos run test:app
 
 format:

@@ -113,6 +113,9 @@ void main() {
         await tester.pump(); // um frame após o tap
 
         expect(find.byType(CircularProgressIndicator), findsOneWidget);
+
+        // Drena o timer pendente para evitar assertion error no teardown
+        await tester.pump(const Duration(seconds: 10));
       });
 
       testWidgets('exibe mensagem de erro quando login falha', (tester) async {

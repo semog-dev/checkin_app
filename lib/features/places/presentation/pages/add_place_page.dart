@@ -30,14 +30,23 @@ class _AddPlacePageState extends ConsumerState<AddPlacePage> {
     final name = _nameController.text.trim();
     if (name.isEmpty || _pickedLocation == null) return;
 
+    final uid = ref.read(currentUserIdProvider);
+    if (uid == null) return;
+
     setState(() => _saving = true);
-    await ref.read(placesNotifierProvider.notifier).create(
-          name: name,
-          lat: _pickedLocation!.latitude,
-          lng: _pickedLocation!.longitude,
-          description:
-              _descController.text.trim().isEmpty ? null : _descController.text.trim(),
-          category: _category,
+    await ref.read(placesNotifierProvider.notifier).createPlace(
+          Place(
+            id: DateTime.now().millisecondsSinceEpoch.toString(),
+            name: name,
+            ownerId: uid,
+            lat: _pickedLocation!.latitude,
+            lng: _pickedLocation!.longitude,
+            description: _descController.text.trim().isEmpty
+                ? null
+                : _descController.text.trim(),
+            category: _category,
+            createdAt: DateTime.now(),
+          ),
         );
     if (mounted) Navigator.of(context).pop();
   }
@@ -45,6 +54,7 @@ class _AddPlacePageState extends ConsumerState<AddPlacePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key('add_place_page'),
       appBar: AppBar(title: const Text('Novo local')),
       body: Column(
         children: [

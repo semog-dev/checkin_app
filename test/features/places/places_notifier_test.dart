@@ -52,12 +52,16 @@ ProviderContainer _makeContainer(
   _FakePlaceRepository repo, {
   String userId = 'user-1',
 }) {
-  return ProviderContainer(
+  final container = ProviderContainer(
     overrides: [
       placeRepositoryProvider.overrideWithValue(repo),
       currentUserIdProvider.overrideWithValue(userId),
     ],
   );
+  // Eager init: aciona o build() para que a stream já esteja subscrita
+  // antes de qualquer await no teste.
+  container.read(placesNotifierProvider);
+  return container;
 }
 
 void main() {
@@ -67,7 +71,9 @@ void main() {
       addTearDown(container.dispose);
 
       expect(
-          container.read(placesNotifierProvider), const PlacesState.loading());
+        container.read(placesNotifierProvider),
+        const PlacesState.loading(),
+      );
     });
 
     test('carrega lista de locais do repositório', () async {

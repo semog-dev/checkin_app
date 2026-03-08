@@ -2,6 +2,8 @@ import 'package:checkin_app/app.dart';
 import 'package:checkin_app/bootstrap.dart';
 import 'package:checkin_app/features/auth/data/repositories/firebase_auth_repository.dart';
 import 'package:checkin_app/features/auth/presentation/providers/auth_provider.dart';
+import 'package:checkin_app/features/geofencing/data/repositories/firebase_check_in_repository.dart';
+import 'package:checkin_app/features/geofencing/presentation/providers/geofencing_provider.dart';
 import 'package:checkin_app/features/places/data/repositories/firebase_place_repository.dart';
 import 'package:checkin_app/features/places/presentation/providers/places_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,6 +22,9 @@ void main() async {
         ),
         placeRepositoryProvider.overrideWithValue(
           FirebasePlaceRepository(FirebaseFirestore.instance),
+        ),
+        checkInRepositoryProvider.overrideWithValue(
+          FirebaseCheckInRepository(FirebaseFirestore.instance),
         ),
       ],
       child: const CheckInApp(),

@@ -41,7 +41,9 @@ void main() {
     group('igualdade', () {
       test('loading() == loading()', () {
         expect(
-            const PlacesState.loading(), equals(const PlacesState.loading()));
+          const PlacesState.loading(),
+          equals(const PlacesState.loading()),
+        );
       });
 
       test('loaded com mesmas listas são iguais', () {

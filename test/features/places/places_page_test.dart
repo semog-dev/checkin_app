@@ -1,10 +1,14 @@
+import 'package:checkin_app/features/auth/presentation/providers/auth_provider.dart';
+import 'package:checkin_app/features/places/presentation/pages/add_place_page.dart';
 import 'package:checkin_app/features/places/presentation/pages/places_page.dart';
 import 'package:checkin_app/features/places/presentation/providers/places_provider.dart';
+import 'package:core/core.dart' show AppRoutes;
 import 'package:domain/src/entities/place.dart';
 import 'package:domain/src/repositories/place_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 
 Place _makePlace({String id = 'p1', String name = 'Casa'}) => Place(
       id: id,
@@ -35,6 +39,11 @@ class _FakePlaceRepository implements PlaceRepository {
   Future<void> deletePlace(String id) async {}
 }
 
+class _AuthenticatedNotifier extends AuthNotifier {
+  @override
+  AuthState build() => const AuthState.authenticated(uid: 'user-1');
+}
+
 Widget _buildPage({List<Place> places = const [], Exception? error}) {
   return ProviderScope(
     overrides: [
@@ -43,9 +52,31 @@ Widget _buildPage({List<Place> places = const [], Exception? error}) {
             ? _ErrorPlaceRepository(error)
             : _FakePlaceRepository(places: places),
       ),
-      currentUserIdProvider.overrideWithValue('user-1'),
+      authNotifierProvider.overrideWith(_AuthenticatedNotifier.new),
     ],
     child: const MaterialApp(home: PlacesPage()),
+  );
+}
+
+Widget _buildRoutedPage({List<Place> places = const []}) {
+  final router = GoRouter(
+    routes: [
+      GoRoute(
+        path: '/',
+        builder: (_, __) => const PlacesPage(),
+      ),
+      GoRoute(
+        path: AppRoutes.addPlace,
+        builder: (_, __) => const AddPlacePage(),
+      ),
+    ],
+  );
+  return ProviderScope(
+    overrides: [
+      placeRepositoryProvider.overrideWithValue(_FakePlaceRepository(places: places)),
+      authNotifierProvider.overrideWith(_AuthenticatedNotifier.new),
+    ],
+    child: MaterialApp.router(routerConfig: router),
   );
 }
 
@@ -61,7 +92,7 @@ void main() {
               placeRepositoryProvider.overrideWithValue(
                 _NeverEmitPlaceRepository(),
               ),
-              currentUserIdProvider.overrideWithValue('user-1'),
+              authNotifierProvider.overrideWith(_AuthenticatedNotifier.new),
             ],
             child: const MaterialApp(home: PlacesPage()),
           ),
@@ -135,7 +166,7 @@ void main() {
 
     group('navegação', () {
       testWidgets('toca no FAB navega para AddPlacePage', (tester) async {
-        await tester.pumpWidget(_buildPage());
+        await tester.pumpWidget(_buildRoutedPage());
         await tester.pumpAndSettle();
 
         await tester.tap(find.byType(FloatingActionButton));

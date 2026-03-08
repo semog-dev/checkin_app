@@ -35,9 +35,13 @@ class _FakeAuthRepository implements AuthRepository {
 }
 
 ProviderContainer _makeContainer(_FakeAuthRepository repo) {
-  return ProviderContainer(
+  final container = ProviderContainer(
     overrides: [authRepositoryProvider.overrideWithValue(repo)],
   );
+  // Eager init: aciona o build() para que a stream já esteja subscrita
+  // antes de qualquer await no teste.
+  container.read(authNotifierProvider);
+  return container;
 }
 
 void main() {
