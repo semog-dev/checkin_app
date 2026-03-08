@@ -37,6 +37,31 @@ class NotificationService {
         );
   }
 
+  Future<void> showRemote({
+    required String title,
+    required String body,
+  }) async {
+    await _plugin.show(
+      DateTime.now().millisecondsSinceEpoch % 100000,
+      title,
+      body,
+      NotificationDetails(
+        android: AndroidNotificationDetails(
+          _channelId,
+          _channelName,
+          channelDescription: _channelDesc,
+          importance: Importance.high,
+          priority: Priority.high,
+          icon: '@mipmap/ic_launcher',
+        ),
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentSound: true,
+        ),
+      ),
+    );
+  }
+
   Future<void> showCheckIn({
     required String placeName,
     required CheckInEventType type,

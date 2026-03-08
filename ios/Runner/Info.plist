@@ -50,10 +50,12 @@
 	<string>O CheckIn usa sua localização para detectar entrada e saída nos locais cadastrados.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>O CheckIn usa sua localização em segundo plano para registrar check-ins automáticos mesmo com o app fechado.</string>
-	<!-- Background location mode -->
+	<!-- Background modes: location + remote push notifications -->
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
+		<string>remote-notification</string>
+		<string>fetch</string>
 	</array>
 </dict>
 </plist>
