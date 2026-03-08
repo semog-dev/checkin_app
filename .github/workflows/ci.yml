@@ -69,8 +69,11 @@ jobs:
       - name: Codegen
         run: melos run codegen
 
-      - name: Testes — packages
+      - name: Testes — packages (dart test)
         run: melos run test
+
+      - name: Testes — package core (flutter test)
+        run: melos run test:core
 
       - name: Testes — app com cobertura
         run: melos run test:app
@@ -131,9 +134,9 @@ jobs:
   # do repositório. O APK gerado fica disponível como artefato.
   #
   # Secrets necessários no repositório:
-  #   PROD_API_BASE_URL       — ex: https://api.checkinapp.com
-  #   PROD_WS_URL             — ex: wss://ws.checkinapp.com
-  #   PROD_MAPS_API_KEY       — chave Dart (flutter_map)
+  #   PROD_API_BASE_URL        — ex: https://api.checkinapp.com
+  #   PROD_WS_URL              — ex: wss://ws.checkinapp.com
+  #   PROD_MAPS_API_KEY        — chave Dart (flutter_map)
   #   PROD_MAPS_API_KEY_NATIVE — chave Android nativa (AndroidManifest)
   # ─────────────────────────────────────────────────────────────
   build-prod:
@@ -141,6 +144,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [analyze, test]
     if: github.ref == 'refs/heads/main'
+    outputs:
+      version: ${{ steps.version.outputs.value }}
     steps:
       - uses: actions/checkout@v4
 
@@ -163,6 +168,12 @@ jobs:
 
       - name: Codegen
         run: melos run codegen
+
+      - name: Extrair versão do pubspec.yaml
+        id: version
+        run: |
+          VALUE=$(grep '^version:' pubspec.yaml | sed 's/version: *//')
+          echo "value=v$VALUE" >> "$GITHUB_OUTPUT"
 
       - name: Gerar envs/prod.json a partir de secrets
         run: |
@@ -196,3 +207,38 @@ jobs:
           name: apk-prod-${{ github.sha }}
           path: build/app/outputs/flutter-apk/app-prod-release.apk
           retention-days: 30
+
+  # ─────────────────────────────────────────────────────────────
+  # Job 5 — GitHub Release (somente na branch main)
+  # Cria (ou atualiza) uma release com o APK prod como asset.
+  # A tag é a versão do pubspec.yaml — ex: v1.0.0+1.
+  # Lembre de bumpar a versão no pubspec.yaml a cada release.
+  # ─────────────────────────────────────────────────────────────
+  release:
+    name: GitHub Release
+    runs-on: ubuntu-latest
+    needs: build-prod
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+    steps:
+      - name: Download APK prod
+        uses: actions/download-artifact@v4
+        with:
+          name: apk-prod-${{ github.sha }}
+          path: dist/
+
+      - name: Renomear APK com versão
+        run: |
+          mv dist/app-prod-release.apk \
+             dist/checkin-${{ needs.build-prod.outputs.version }}.apk
+
+      - name: Criar GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ needs.build-prod.outputs.version }}
+          name: Release ${{ needs.build-prod.outputs.version }}
+          generate_release_notes: true
+          files: dist/checkin-${{ needs.build-prod.outputs.version }}.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
