@@ -45,5 +45,15 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<!-- Location permissions -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>O CheckIn usa sua localização para detectar entrada e saída nos locais cadastrados.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>O CheckIn usa sua localização em segundo plano para registrar check-ins automáticos mesmo com o app fechado.</string>
+	<!-- Background location mode -->
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 </dict>
 </plist>

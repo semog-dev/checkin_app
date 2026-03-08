@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:checkin_app/features/geofencing/data/services/geofence_service.dart';
 import 'package:checkin_app/features/places/presentation/providers/places_provider.dart';
@@ -15,6 +16,34 @@ final checkInRepositoryProvider = Provider<CheckInRepository>(
 // ── Position stream provider (overridable in tests) ───────────────────────────
 
 final positionStreamProvider = Provider<Stream<Position>>((ref) {
+  if (Platform.isAndroid) {
+    return Geolocator.getPositionStream(
+      locationSettings: AndroidSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 10,
+        intervalDuration: const Duration(seconds: 10),
+        foregroundNotificationConfig: const ForegroundNotificationConfig(
+          notificationTitle: 'CheckIn ativo',
+          notificationText:
+              'Monitorando sua localização em segundo plano.',
+          enableWakeLock: true,
+        ),
+      ),
+    );
+  }
+
+  if (Platform.isIOS || Platform.isMacOS) {
+    return Geolocator.getPositionStream(
+      locationSettings: AppleSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 10,
+        activityType: ActivityType.other,
+        pauseLocationUpdatesAutomatically: false,
+        allowBackgroundLocationUpdates: true,
+      ),
+    );
+  }
+
   return Geolocator.getPositionStream(
     locationSettings: const LocationSettings(
       accuracy: LocationAccuracy.high,
@@ -88,7 +117,14 @@ class GeofencingNotifier extends Notifier<GeofencingState> {
     final uid = ref.read(currentUserIdProvider);
     if (uid == null) return;
 
-    // 1. Check / request permission
+    // 1. Verificar se o serviço de localização está habilitado
+    final serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      state = const GeofencingState.noPermission();
+      return;
+    }
+
+    // 2. Verificar / solicitar permissão de localização
     var permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -99,7 +135,15 @@ class GeofencingNotifier extends Notifier<GeofencingState> {
       return;
     }
 
-    // 2. Build zones from current places
+    // 3. Solicitar permissão "sempre" para background location
+    //    (whileInUse ainda funciona com foreground service no Android)
+    if (permission == LocationPermission.whileInUse) {
+      permission = await Geolocator.requestPermission();
+      // Se o usuário não concedeu "sempre", continua com whileInUse
+      // (o foreground service garante background no Android)
+    }
+
+    // 4. Build zones from current places
     final placesState = ref.read(placesNotifierProvider);
     final places = switch (placesState) {
       PlacesLoaded(:final places) => places,
@@ -122,7 +166,7 @@ class GeofencingNotifier extends Notifier<GeofencingState> {
         )
         .toList();
 
-    // 3. Start monitoring
+    // 5. Start monitoring
     state = const GeofencingState.monitoring(insidePlaceIds: {});
 
     await _sub?.cancel();
