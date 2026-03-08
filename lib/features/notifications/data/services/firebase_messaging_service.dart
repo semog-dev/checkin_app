@@ -1,11 +1,12 @@
 import 'dart:async';
 
+import 'package:checkin_app/features/notifications/data/services/messaging_service.dart';
 import 'package:checkin_app/features/notifications/data/services/notification_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core/core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-class FirebaseMessagingService {
+class FirebaseMessagingService implements MessagingService {
   FirebaseMessagingService({
     required FirebaseFirestore firestore,
     required NotificationService notificationService,
@@ -20,6 +21,7 @@ class FirebaseMessagingService {
 
   /// Inicializa o FCM para o usuário autenticado.
   /// Idempotente — cancela subscriptions anteriores antes de recriar.
+  @override
   Future<void> init(String userId) async {
     await _tokenRefreshSub?.cancel();
     await _foregroundSub?.cancel();
@@ -55,6 +57,7 @@ class FirebaseMessagingService {
   }
 
   /// Limpa subscriptions ao fazer logout.
+  @override
   Future<void> dispose() async {
     await _tokenRefreshSub?.cancel();
     await _foregroundSub?.cancel();

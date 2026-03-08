@@ -4,17 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'helpers/test_providers.dart';
+
 void main() {
   group('CheckInApp — widget tests', () {
     testWidgets('monta sem exceção dentro de ProviderScope', (tester) async {
-      await tester.pumpWidget(const ProviderScope(child: CheckInApp()));
+      await tester.pumpWidget(testApp());
       await tester.pump();
 
       expect(tester.takeException(), isNull);
     });
 
     testWidgets('renderiza MaterialApp com router', (tester) async {
-      await tester.pumpWidget(const ProviderScope(child: CheckInApp()));
+      await tester.pumpWidget(testApp());
       await tester.pump();
 
       expect(find.byType(MaterialApp), findsOneWidget);
@@ -23,7 +25,7 @@ void main() {
     testWidgets('inicia na rota splash — exibe CircularProgressIndicator', (
       tester,
     ) async {
-      await tester.pumpWidget(const ProviderScope(child: CheckInApp()));
+      await tester.pumpWidget(testApp());
       await tester.pump();
 
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
@@ -34,7 +36,7 @@ void main() {
         (
       tester,
     ) async {
-      await tester.pumpWidget(const ProviderScope(child: CheckInApp()));
+      await tester.pumpWidget(testApp());
       await tester.pump();
 
       // Em testes, flavor='dev' então debugShowCheckedModeBanner=true
@@ -44,7 +46,7 @@ void main() {
 
     testWidgets('ProviderScope isolado não afeta outros testes',
         (tester) async {
-      await tester.pumpWidget(const ProviderScope(child: CheckInApp()));
+      await tester.pumpWidget(testApp());
       await tester.pump();
 
       expect(find.byType(ProviderScope), findsOneWidget);
@@ -53,7 +55,7 @@ void main() {
 
   group('Smoke tests — rotas placeholder', () {
     testWidgets('rota splash é acessível', (tester) async {
-      await tester.pumpWidget(const ProviderScope(child: CheckInApp()));
+      await tester.pumpWidget(testApp());
       await tester.pump();
 
       // Splash exibe loading indicator
@@ -61,7 +63,7 @@ void main() {
     });
 
     testWidgets('app suporta tema claro', (tester) async {
-      await tester.pumpWidget(const ProviderScope(child: CheckInApp()));
+      await tester.pumpWidget(testApp());
       await tester.pump();
 
       final materialApp = tester.widget<MaterialApp>(find.byType(MaterialApp));
@@ -69,7 +71,7 @@ void main() {
     });
 
     testWidgets('app suporta tema escuro', (tester) async {
-      await tester.pumpWidget(const ProviderScope(child: CheckInApp()));
+      await tester.pumpWidget(testApp());
       await tester.pump();
 
       final materialApp = tester.widget<MaterialApp>(find.byType(MaterialApp));
@@ -83,7 +85,7 @@ void main() {
     });
 
     testWidgets('GoRouter inicializa com rota correta', (tester) async {
-      await tester.pumpWidget(const ProviderScope(child: CheckInApp()));
+      await tester.pumpWidget(testApp());
       await tester.pump();
 
       // Verifica que o app não jogou exceção ao inicializar com a rota splash

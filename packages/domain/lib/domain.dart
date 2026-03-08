@@ -15,9 +15,11 @@ export 'package:domain/src/repositories/user_repository.dart';
 
 // Use cases
 export 'package:domain/src/use_cases/create_check_in.dart';
+export 'package:domain/src/use_cases/create_group.dart';
 export 'package:domain/src/use_cases/create_place.dart';
 export 'package:domain/src/use_cases/get_places.dart';
 export 'package:domain/src/use_cases/get_user_profile.dart';
+export 'package:domain/src/use_cases/join_group.dart';
 export 'package:domain/src/use_cases/sign_in.dart';
 export 'package:domain/src/use_cases/sign_out.dart';
 export 'package:domain/src/use_cases/watch_auth_state.dart';

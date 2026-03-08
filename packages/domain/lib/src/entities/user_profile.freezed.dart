@@ -21,6 +21,7 @@ mixin _$UserProfile {
   UserStatus get status;
   List<String> get groupIds;
   DateTime? get lastSeenAt;
+  String? get currentPlaceId;
 
   /// Create a copy of UserProfile
   /// with the given fields replaced by the non-null parameter values.
@@ -46,7 +47,9 @@ mixin _$UserProfile {
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other.groupIds, groupIds) &&
             (identical(other.lastSeenAt, lastSeenAt) ||
-                other.lastSeenAt == lastSeenAt));
+                other.lastSeenAt == lastSeenAt) &&
+            (identical(other.currentPlaceId, currentPlaceId) ||
+                other.currentPlaceId == currentPlaceId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -59,11 +62,12 @@ mixin _$UserProfile {
       photoUrl,
       status,
       const DeepCollectionEquality().hash(groupIds),
-      lastSeenAt);
+      lastSeenAt,
+      currentPlaceId);
 
   @override
   String toString() {
-    return 'UserProfile(uid: $uid, displayName: $displayName, email: $email, photoUrl: $photoUrl, status: $status, groupIds: $groupIds, lastSeenAt: $lastSeenAt)';
+    return 'UserProfile(uid: $uid, displayName: $displayName, email: $email, photoUrl: $photoUrl, status: $status, groupIds: $groupIds, lastSeenAt: $lastSeenAt, currentPlaceId: $currentPlaceId)';
   }
 }
 
@@ -80,7 +84,8 @@ abstract mixin class $UserProfileCopyWith<$Res> {
       String? photoUrl,
       UserStatus status,
       List<String> groupIds,
-      DateTime? lastSeenAt});
+      DateTime? lastSeenAt,
+      String? currentPlaceId});
 }
 
 /// @nodoc
@@ -102,6 +107,7 @@ class _$UserProfileCopyWithImpl<$Res> implements $UserProfileCopyWith<$Res> {
     Object? status = null,
     Object? groupIds = null,
     Object? lastSeenAt = freezed,
+    Object? currentPlaceId = freezed,
   }) {
     return _then(_self.copyWith(
       uid: null == uid
@@ -132,6 +138,10 @@ class _$UserProfileCopyWithImpl<$Res> implements $UserProfileCopyWith<$Res> {
           ? _self.lastSeenAt
           : lastSeenAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      currentPlaceId: freezed == currentPlaceId
+          ? _self.currentPlaceId
+          : currentPlaceId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -236,15 +246,23 @@ extension UserProfilePatterns on UserProfile {
             String? photoUrl,
             UserStatus status,
             List<String> groupIds,
-            DateTime? lastSeenAt)?
+            DateTime? lastSeenAt,
+            String? currentPlaceId)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _UserProfile() when $default != null:
-        return $default(_that.uid, _that.displayName, _that.email,
-            _that.photoUrl, _that.status, _that.groupIds, _that.lastSeenAt);
+        return $default(
+            _that.uid,
+            _that.displayName,
+            _that.email,
+            _that.photoUrl,
+            _that.status,
+            _that.groupIds,
+            _that.lastSeenAt,
+            _that.currentPlaceId);
       case _:
         return orElse();
     }
@@ -272,14 +290,22 @@ extension UserProfilePatterns on UserProfile {
             String? photoUrl,
             UserStatus status,
             List<String> groupIds,
-            DateTime? lastSeenAt)
+            DateTime? lastSeenAt,
+            String? currentPlaceId)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _UserProfile():
-        return $default(_that.uid, _that.displayName, _that.email,
-            _that.photoUrl, _that.status, _that.groupIds, _that.lastSeenAt);
+        return $default(
+            _that.uid,
+            _that.displayName,
+            _that.email,
+            _that.photoUrl,
+            _that.status,
+            _that.groupIds,
+            _that.lastSeenAt,
+            _that.currentPlaceId);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -306,14 +332,22 @@ extension UserProfilePatterns on UserProfile {
             String? photoUrl,
             UserStatus status,
             List<String> groupIds,
-            DateTime? lastSeenAt)?
+            DateTime? lastSeenAt,
+            String? currentPlaceId)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _UserProfile() when $default != null:
-        return $default(_that.uid, _that.displayName, _that.email,
-            _that.photoUrl, _that.status, _that.groupIds, _that.lastSeenAt);
+        return $default(
+            _that.uid,
+            _that.displayName,
+            _that.email,
+            _that.photoUrl,
+            _that.status,
+            _that.groupIds,
+            _that.lastSeenAt,
+            _that.currentPlaceId);
       case _:
         return null;
     }
@@ -330,7 +364,8 @@ class _UserProfile implements UserProfile {
       this.photoUrl,
       this.status = UserStatus.offline,
       final List<String> groupIds = const [],
-      this.lastSeenAt})
+      this.lastSeenAt,
+      this.currentPlaceId})
       : _groupIds = groupIds;
   factory _UserProfile.fromJson(Map<String, dynamic> json) =>
       _$UserProfileFromJson(json);
@@ -357,6 +392,8 @@ class _UserProfile implements UserProfile {
 
   @override
   final DateTime? lastSeenAt;
+  @override
+  final String? currentPlaceId;
 
   /// Create a copy of UserProfile
   /// with the given fields replaced by the non-null parameter values.
@@ -387,7 +424,9 @@ class _UserProfile implements UserProfile {
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._groupIds, _groupIds) &&
             (identical(other.lastSeenAt, lastSeenAt) ||
-                other.lastSeenAt == lastSeenAt));
+                other.lastSeenAt == lastSeenAt) &&
+            (identical(other.currentPlaceId, currentPlaceId) ||
+                other.currentPlaceId == currentPlaceId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -400,11 +439,12 @@ class _UserProfile implements UserProfile {
       photoUrl,
       status,
       const DeepCollectionEquality().hash(_groupIds),
-      lastSeenAt);
+      lastSeenAt,
+      currentPlaceId);
 
   @override
   String toString() {
-    return 'UserProfile(uid: $uid, displayName: $displayName, email: $email, photoUrl: $photoUrl, status: $status, groupIds: $groupIds, lastSeenAt: $lastSeenAt)';
+    return 'UserProfile(uid: $uid, displayName: $displayName, email: $email, photoUrl: $photoUrl, status: $status, groupIds: $groupIds, lastSeenAt: $lastSeenAt, currentPlaceId: $currentPlaceId)';
   }
 }
 
@@ -423,7 +463,8 @@ abstract mixin class _$UserProfileCopyWith<$Res>
       String? photoUrl,
       UserStatus status,
       List<String> groupIds,
-      DateTime? lastSeenAt});
+      DateTime? lastSeenAt,
+      String? currentPlaceId});
 }
 
 /// @nodoc
@@ -445,6 +486,7 @@ class __$UserProfileCopyWithImpl<$Res> implements _$UserProfileCopyWith<$Res> {
     Object? status = null,
     Object? groupIds = null,
     Object? lastSeenAt = freezed,
+    Object? currentPlaceId = freezed,
   }) {
     return _then(_UserProfile(
       uid: null == uid
@@ -475,6 +517,10 @@ class __$UserProfileCopyWithImpl<$Res> implements _$UserProfileCopyWith<$Res> {
           ? _self.lastSeenAt
           : lastSeenAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      currentPlaceId: freezed == currentPlaceId
+          ? _self.currentPlaceId
+          : currentPlaceId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }

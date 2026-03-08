@@ -4,6 +4,9 @@ import 'package:checkin_app/features/auth/data/repositories/firebase_auth_reposi
 import 'package:checkin_app/features/auth/presentation/providers/auth_provider.dart';
 import 'package:checkin_app/features/geofencing/data/repositories/firebase_check_in_repository.dart';
 import 'package:checkin_app/features/geofencing/presentation/providers/geofencing_provider.dart';
+import 'package:checkin_app/features/group/data/repositories/firestore_group_repository.dart';
+import 'package:checkin_app/features/group/data/repositories/firestore_user_repository.dart';
+import 'package:checkin_app/features/group/presentation/providers/group_provider.dart';
 import 'package:checkin_app/features/notifications/data/services/firebase_messaging_service.dart';
 import 'package:checkin_app/features/notifications/data/services/notification_service.dart';
 import 'package:checkin_app/features/notifications/presentation/providers/notification_provider.dart';
@@ -37,6 +40,15 @@ void main() async {
         ),
         checkInRepositoryProvider.overrideWithValue(
           FirebaseCheckInRepository(FirebaseFirestore.instance),
+        ),
+        groupRepositoryProvider.overrideWithValue(
+          FirestoreGroupRepository(FirebaseFirestore.instance),
+        ),
+        userRepositoryProvider.overrideWithValue(
+          FirestoreUserRepository(
+            FirebaseFirestore.instance,
+            FirebaseAuth.instance,
+          ),
         ),
         notificationServiceProvider.overrideWithValue(notificationService),
         firebaseMessagingServiceProvider.overrideWithValue(messagingService),

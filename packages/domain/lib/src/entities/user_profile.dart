@@ -15,6 +15,7 @@ abstract class UserProfile with _$UserProfile {
     @Default(UserStatus.offline) UserStatus status,
     @Default([]) List<String> groupIds,
     DateTime? lastSeenAt,
+    String? currentPlaceId,
   }) = _UserProfile;
 
   factory UserProfile.fromJson(Map<String, dynamic> json) =>

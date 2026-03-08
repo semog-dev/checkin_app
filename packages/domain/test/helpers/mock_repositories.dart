@@ -74,6 +74,12 @@ class MockUserRepository implements UserRepository {
   }
 
   @override
+  Stream<UserProfile?> watchUserById(String uid) {
+    if (errorToThrow != null) return Stream.error(errorToThrow!);
+    return Stream.value(profileToReturn);
+  }
+
+  @override
   Future<UserProfile?> getUserById(String uid) async {
     lastGetByIdArg = uid;
     if (errorToThrow != null) throw errorToThrow!;

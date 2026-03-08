@@ -35,6 +35,13 @@ class HomePage extends ConsumerWidget {
             trailing: const Icon(Icons.chevron_right),
             onTap: () => context.push(AppRoutes.places),
           ),
+          ListTile(
+            leading: const Icon(Icons.group),
+            title: const Text('Grupos'),
+            subtitle: const Text('Veja o status em tempo real'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.push(AppRoutes.groups),
+          ),
         ],
       ),
     );

@@ -78,6 +78,9 @@ class _StreamUserRepository implements UserRepository {
   Stream<UserProfile?> watchCurrentUser() => _stream;
 
   @override
+  Stream<UserProfile?> watchUserById(String uid) => Stream.value(null);
+
+  @override
   Future<UserProfile?> getUserById(String uid) async => null;
 
   @override

@@ -1,6 +1,10 @@
 import 'package:checkin_app/features/auth/presentation/pages/home_page.dart';
 import 'package:checkin_app/features/auth/presentation/pages/login_page.dart';
 import 'package:checkin_app/features/auth/presentation/providers/auth_provider.dart';
+import 'package:checkin_app/features/group/presentation/pages/create_group_page.dart';
+import 'package:checkin_app/features/group/presentation/pages/group_detail_page.dart';
+import 'package:checkin_app/features/group/presentation/pages/groups_page.dart';
+import 'package:checkin_app/features/group/presentation/pages/join_group_page.dart';
 import 'package:checkin_app/features/places/presentation/pages/add_place_page.dart';
 import 'package:checkin_app/features/places/presentation/pages/places_page.dart';
 import 'package:core/core.dart' show AppRoutes;
@@ -42,8 +46,22 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         builder: (_, __) => const _PlaceholderPage(title: 'Place'),
       ),
       GoRoute(
+        path: AppRoutes.groups,
+        builder: (_, __) => const GroupsPage(),
+      ),
+      GoRoute(
+        path: AppRoutes.createGroup,
+        builder: (_, __) => const CreateGroupPage(),
+      ),
+      GoRoute(
+        path: AppRoutes.joinGroup,
+        builder: (_, __) => const JoinGroupPage(),
+      ),
+      GoRoute(
         path: AppRoutes.groupDetail,
-        builder: (_, __) => const _PlaceholderPage(title: 'Group'),
+        builder: (_, state) => GroupDetailPage(
+          groupId: state.pathParameters['id']!,
+        ),
       ),
       GoRoute(
         path: AppRoutes.settings,

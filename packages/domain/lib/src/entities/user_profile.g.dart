@@ -20,6 +20,7 @@ _UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => _UserProfile(
       lastSeenAt: json['lastSeenAt'] == null
           ? null
           : DateTime.parse(json['lastSeenAt'] as String),
+      currentPlaceId: json['currentPlaceId'] as String?,
     );
 
 Map<String, dynamic> _$UserProfileToJson(_UserProfile instance) =>
@@ -31,6 +32,7 @@ Map<String, dynamic> _$UserProfileToJson(_UserProfile instance) =>
       'status': _$UserStatusEnumMap[instance.status]!,
       'groupIds': instance.groupIds,
       'lastSeenAt': instance.lastSeenAt?.toIso8601String(),
+      'currentPlaceId': instance.currentPlaceId,
     };
 
 const _$UserStatusEnumMap = {

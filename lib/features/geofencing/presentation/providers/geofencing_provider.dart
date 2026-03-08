@@ -2,8 +2,10 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:checkin_app/features/geofencing/data/services/geofence_service.dart';
+import 'package:checkin_app/features/group/presentation/providers/group_provider.dart';
 import 'package:checkin_app/features/notifications/presentation/providers/notification_provider.dart';
 import 'package:checkin_app/features/places/presentation/providers/places_provider.dart';
+import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
@@ -203,6 +205,29 @@ class GeofencingNotifier extends Notifier<GeofencingState> {
 
     state = GeofencingMonitoring(insidePlaceIds: updated);
     ref.read(checkInRepositoryProvider).recordEvent(event);
+
+    // Atualiza currentPlaceId no perfil do usuário (tempo real para grupos)
+    final userRepo = ref.read(userRepositoryProvider);
+    final uid = ref.read(currentUserIdProvider);
+    if (uid != null) {
+      userRepo.getUserById(uid).then((profile) {
+        if (profile == null) return;
+        final newPlaceId = event.type == CheckInEventType.enter
+            ? event.placeId
+            : null;
+        userRepo.updateProfile(
+          profile.copyWith(
+            currentPlaceId: newPlaceId,
+            lastSeenAt: DateTime.now(),
+            status: event.type == CheckInEventType.enter
+                ? UserStatus.online
+                : UserStatus.offline,
+          ),
+        );
+      }).catchError((Object e) {
+        AppLogger.w('GeofencingNotifier: falha ao atualizar perfil: $e');
+      });
+    }
 
     // Notificação local
     final placesState = ref.read(placesNotifierProvider);

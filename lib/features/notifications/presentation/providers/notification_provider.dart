@@ -1,4 +1,4 @@
-import 'package:checkin_app/features/notifications/data/services/firebase_messaging_service.dart';
+import 'package:checkin_app/features/notifications/data/services/messaging_service.dart';
 import 'package:checkin_app/features/notifications/data/services/notification_service.dart';
 import 'package:checkin_app/features/places/presentation/providers/places_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,7 +8,7 @@ final notificationServiceProvider = Provider<NotificationService>(
       throw UnimplementedError('notificationServiceProvider not overridden'),
 );
 
-final firebaseMessagingServiceProvider = Provider<FirebaseMessagingService>(
+final firebaseMessagingServiceProvider = Provider<MessagingService>(
   (ref) => throw UnimplementedError(
     'firebaseMessagingServiceProvider not overridden',
   ),
