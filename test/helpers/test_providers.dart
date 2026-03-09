@@ -5,8 +5,9 @@ import 'package:checkin_app/features/notifications/data/services/messaging_servi
 import 'package:checkin_app/features/notifications/data/services/notification_service.dart';
 import 'package:checkin_app/features/notifications/presentation/providers/notification_provider.dart';
 import 'package:checkin_app/features/places/presentation/providers/places_provider.dart';
+import 'package:checkin_app/features/settings/presentation/providers/theme_provider.dart';
 import 'package:domain/domain.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // ── Stubs ─────────────────────────────────────────────────────────────────────
@@ -131,6 +132,14 @@ class FakeMessagingService implements MessagingService {
   Future<void> dispose() async {}
 }
 
+class _FakeThemeModeNotifier extends ThemeModeNotifier {
+  @override
+  ThemeMode build() => ThemeMode.system;
+
+  @override
+  void setMode(ThemeMode mode) => state = mode;
+}
+
 // ── Widget helper ─────────────────────────────────────────────────────────────
 
 Widget testApp() => ProviderScope(
@@ -144,6 +153,7 @@ Widget testApp() => ProviderScope(
             .overrideWithValue(FakeNotificationService()),
         firebaseMessagingServiceProvider
             .overrideWithValue(FakeMessagingService()),
+        themeModeProvider.overrideWith(() => _FakeThemeModeNotifier()),
       ],
       child: const CheckInApp(),
     );

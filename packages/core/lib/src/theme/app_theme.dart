@@ -19,7 +19,8 @@ abstract final class AppTheme {
       // ── Tipografia ──────────────────────────────────────────────────────
       textTheme: const TextTheme(
         displayLarge: TextStyle(fontWeight: FontWeight.w700, letterSpacing: -1),
-        displayMedium: TextStyle(fontWeight: FontWeight.w700, letterSpacing: -0.5),
+        displayMedium:
+            TextStyle(fontWeight: FontWeight.w700, letterSpacing: -0.5),
         headlineLarge: TextStyle(fontWeight: FontWeight.w700),
         headlineMedium: TextStyle(fontWeight: FontWeight.w600),
         headlineSmall: TextStyle(fontWeight: FontWeight.w600),
@@ -56,7 +57,8 @@ abstract final class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: scheme.surfaceContainerHighest.withValues(alpha: 0.5),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: scheme.outline.withValues(alpha: 0.4)),
@@ -81,7 +83,8 @@ abstract final class AppTheme {
       // ── FilledButton ─────────────────────────────────────────────────────
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
           textStyle: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
         ),
@@ -89,7 +92,8 @@ abstract final class AppTheme {
       // ── OutlinedButton ───────────────────────────────────────────────────
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
           textStyle: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
         ),
