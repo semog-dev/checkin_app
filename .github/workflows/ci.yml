@@ -169,11 +169,16 @@ jobs:
       - name: Codegen
         run: melos run codegen
 
-      - name: Extrair versão do pubspec.yaml
+      - name: Calcular versão
         id: version
         run: |
-          VALUE=$(grep '^version:' pubspec.yaml | sed 's/version: *//')
-          echo "value=v$VALUE" >> "$GITHUB_OUTPUT"
+          # semver vem do pubspec.yaml (atualizado manualmente a cada release público)
+          SEMVER=$(grep '^version:' pubspec.yaml | sed 's/version: *//' | cut -d'+' -f1)
+          # build number = número do run do CI (único e crescente)
+          BUILD=${{ github.run_number }}
+          echo "semver=$SEMVER"       >> "$GITHUB_OUTPUT"
+          echo "build=$BUILD"         >> "$GITHUB_OUTPUT"
+          echo "value=v${SEMVER}+${BUILD}" >> "$GITHUB_OUTPUT"
 
       - name: Gerar envs/prod.json a partir de secrets
         run: |
@@ -199,7 +204,9 @@ jobs:
         run: |
           flutter build apk \
             --flavor prod \
-            --dart-define-from-file=envs/prod.json
+            --dart-define-from-file=envs/prod.json \
+            --build-name=${{ steps.version.outputs.semver }} \
+            --build-number=${{ steps.version.outputs.build }}
 
       - name: Upload APK prod como artefato
         uses: actions/upload-artifact@v4
@@ -210,9 +217,9 @@ jobs:
 
   # ─────────────────────────────────────────────────────────────
   # Job 5 — GitHub Release (somente na branch main)
-  # Cria (ou atualiza) uma release com o APK prod como asset.
-  # A tag é a versão do pubspec.yaml — ex: v1.0.0+1.
-  # Lembre de bumpar a versão no pubspec.yaml a cada release.
+  # Tag = v{semver}+{run_number}  ex: v1.0.0+42
+  # semver vem do pubspec.yaml (bump manual p/ releases públicos)
+  # build number = github.run_number (único e auto-incremental)
   # ─────────────────────────────────────────────────────────────
   release:
     name: GitHub Release
