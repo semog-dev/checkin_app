@@ -10,12 +10,6 @@ import 'package:domain/domain.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 
-// ── Repository provider ───────────────────────────────────────────────────────
-
-final checkInRepositoryProvider = Provider<CheckInRepository>(
-  (ref) => throw UnimplementedError('checkInRepositoryProvider not overridden'),
-);
-
 // ── Position stream provider (overridable in tests) ───────────────────────────
 
 final positionStreamProvider = Provider<Stream<Position>>((ref) {

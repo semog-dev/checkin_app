@@ -58,10 +58,14 @@ final class PlacesError extends PlacesState {
   int get hashCode => message.hashCode;
 }
 
-// ── Repository ────────────────────────────────────────────────────────────────
+// ── Repositories ──────────────────────────────────────────────────────────────
 
 final placeRepositoryProvider = Provider<PlaceRepository>(
   (ref) => throw UnimplementedError('placeRepositoryProvider not overridden'),
+);
+
+final checkInRepositoryProvider = Provider<CheckInRepository>(
+  (ref) => throw UnimplementedError('checkInRepositoryProvider not overridden'),
 );
 
 // ── Current user ID ───────────────────────────────────────────────────────────
@@ -69,6 +73,13 @@ final placeRepositoryProvider = Provider<PlaceRepository>(
 final currentUserIdProvider = Provider<String?>((ref) {
   final authState = ref.watch(authNotifierProvider);
   return authState is AuthAuthenticated ? authState.uid : null;
+});
+
+// ── Place events (histórico de check-ins de um local) ─────────────────────────
+
+final placeEventsProvider =
+    StreamProvider.family<List<CheckInEvent>, String>((ref, placeId) {
+  return ref.watch(checkInRepositoryProvider).watchEventsForPlace(placeId);
 });
 
 // ── Notifier ──────────────────────────────────────────────────────────────────

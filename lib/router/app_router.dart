@@ -7,6 +7,7 @@ import 'package:checkin_app/features/group/presentation/pages/group_detail_page.
 import 'package:checkin_app/features/group/presentation/pages/groups_page.dart';
 import 'package:checkin_app/features/group/presentation/pages/join_group_page.dart';
 import 'package:checkin_app/features/places/presentation/pages/add_place_page.dart';
+import 'package:checkin_app/features/places/presentation/pages/place_detail_page.dart';
 import 'package:checkin_app/features/places/presentation/pages/places_page.dart';
 import 'package:core/core.dart' show AppRoutes;
 import 'package:flutter/material.dart';
@@ -48,7 +49,9 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: AppRoutes.placeDetail,
-        builder: (_, __) => const _PlaceholderPage(title: 'Place'),
+        builder: (_, state) => PlaceDetailPage(
+          placeId: state.pathParameters['id']!,
+        ),
       ),
       GoRoute(
         path: AppRoutes.groups,

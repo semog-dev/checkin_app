@@ -137,6 +137,9 @@ class _PlacesContent extends ConsumerWidget {
                       .read(placesNotifierProvider.notifier)
                       .deletePlace(place.id),
                 ),
+                onTap: () => context.push(
+                  AppRoutes.placeDetail.replaceFirst(':id', place.id),
+                ),
               );
             },
           ),

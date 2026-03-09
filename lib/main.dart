@@ -3,7 +3,6 @@ import 'package:checkin_app/bootstrap.dart';
 import 'package:checkin_app/features/auth/data/repositories/firebase_auth_repository.dart';
 import 'package:checkin_app/features/auth/presentation/providers/auth_provider.dart';
 import 'package:checkin_app/features/geofencing/data/repositories/firebase_check_in_repository.dart';
-import 'package:checkin_app/features/geofencing/presentation/providers/geofencing_provider.dart';
 import 'package:checkin_app/features/group/data/repositories/firestore_group_repository.dart';
 import 'package:checkin_app/features/group/data/repositories/firestore_user_repository.dart';
 import 'package:checkin_app/features/group/presentation/providers/group_provider.dart';
