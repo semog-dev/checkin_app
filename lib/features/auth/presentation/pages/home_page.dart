@@ -17,9 +17,9 @@ class HomePage extends ConsumerWidget {
         title: const Text('CheckIn'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.logout),
-            tooltip: 'Sair',
-            onPressed: () => ref.read(authNotifierProvider.notifier).signOut(),
+            icon: const Icon(Icons.settings_outlined),
+            tooltip: 'Configurações',
+            onPressed: () => context.push(AppRoutes.settings),
           ),
         ],
       ),

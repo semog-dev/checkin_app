@@ -9,6 +9,7 @@ import 'package:checkin_app/features/group/presentation/pages/join_group_page.da
 import 'package:checkin_app/features/places/presentation/pages/add_place_page.dart';
 import 'package:checkin_app/features/places/presentation/pages/place_detail_page.dart';
 import 'package:checkin_app/features/places/presentation/pages/places_page.dart';
+import 'package:checkin_app/features/settings/presentation/pages/settings_page.dart';
 import 'package:core/core.dart' show AppRoutes;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -73,7 +74,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: AppRoutes.settings,
-        builder: (_, __) => const _PlaceholderPage(title: 'Settings'),
+        builder: (_, __) => const SettingsPage(),
       ),
     ],
   );
@@ -112,13 +113,3 @@ class _SplashPage extends StatelessWidget {
       const Scaffold(body: Center(child: CircularProgressIndicator()));
 }
 
-class _PlaceholderPage extends StatelessWidget {
-  const _PlaceholderPage({required this.title});
-  final String title;
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(title: Text(title)),
-        body: Center(child: Text(title)),
-      );
-}
