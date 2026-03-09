@@ -63,6 +63,7 @@ Future<void> bootstrap() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   await Hive.initFlutter();
+  await Hive.openBox<int>('settings');
 
   AppLogger.i('Bootstrap concluído — flavor: ${AppConfig.flavor}');
 }
