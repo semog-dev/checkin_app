@@ -69,6 +69,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextFormField(
+                key: const Key('name_field'),
                 controller: _nameController,
                 decoration: const InputDecoration(
                   labelText: 'Nome',
@@ -80,6 +81,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
               ),
               const SizedBox(height: 16),
               TextFormField(
+                key: const Key('email_field'),
                 controller: _emailController,
                 decoration: const InputDecoration(
                   labelText: 'E-mail',
@@ -91,6 +93,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
               ),
               const SizedBox(height: 16),
               TextFormField(
+                key: const Key('password_field'),
                 controller: _passwordController,
                 decoration: InputDecoration(
                   labelText: 'Senha',
@@ -112,6 +115,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
               ),
               const SizedBox(height: 24),
               FilledButton(
+                key: const Key('register_button'),
                 onPressed: _loading ? null : _submit,
                 child: _loading
                     ? const SizedBox(

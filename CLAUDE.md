@@ -7,13 +7,14 @@ App Flutter de "Check-in Inteligente": o usuário cadastra locais no mapa, o app
 
 | Feature | Status |
 |---|---|
-| Auth (Firebase Email/Senha) | ✅ implementado |
-| Places (CRUD + mapa) | ✅ implementado |
+| Auth (Firebase Email/Senha + registro) | ✅ implementado |
+| Places (CRUD + mapa + PlaceDetail com histórico) | ✅ implementado |
 | Geofencing (background location) | ✅ implementado |
-| Notificações locais + FCM push | ✅ implementado |
+| Notificações locais + FCM push (foreground + background handler) | ✅ implementado |
 | Grupos em tempo real (Firestore) | ✅ implementado |
-| Auth real (registro de usuário) | 🔜 pendente |
-| Home dashboard com status do grupo | 🔜 pendente |
+| UserProfile no Firestore (criado no registro) | ✅ implementado |
+| HomePage com perfil real (avatar, nome, email, status) | ✅ implementado |
+| Settings page (perfil, toggle geofencing, logout) | ✅ implementado |
 
 ## Stack (decisões tomadas)
 - **Framework**: Flutter / Dart
@@ -106,6 +107,8 @@ Nunca usar `@riverpod` codegen no app — apenas `@freezed` no domain.
 - `test/helpers/test_providers.dart` — stubs de todos os providers + helper `testApp()`
 - Testes de widget devem usar `testApp()` em vez de `ProviderScope(child: CheckInApp())` puro
 - Testes de domain ficam em `packages/domain/test/`
+- Páginas com `FlutterMap` não usam `pumpAndSettle()` — usar `pump(Duration(seconds: N))` pois tiles de OSM ficam pendentes em testes
+- Para testar páginas que dependem de `placesNotifierProvider`, sobrescrever `currentUserIdProvider` com um uid fixo
 
 ## Convenções de código
 - `AppLogger.d/i/w/e()` para todos os logs — nunca `print()` diretamente
