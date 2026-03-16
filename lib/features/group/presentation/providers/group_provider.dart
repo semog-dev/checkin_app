@@ -143,3 +143,36 @@ final groupMembersProvider =
   (ref, memberIds) =>
       memberIds.map((uid) => ref.watch(memberProfileProvider(uid))).toList(),
 );
+
+// ── Member history ────────────────────────────────────────────────────────────
+
+typedef MemberHistoryParams = ({String userId, int daysBack});
+
+/// Retorna a lista de eventos de check-in de um membro com o nome do local.
+/// Os eventos são ordenados do mais recente para o mais antigo.
+final memberHistoryProvider = FutureProvider.autoDispose
+    .family<List<(CheckInEvent, String?)>, MemberHistoryParams>(
+  (ref, params) async {
+    final checkInRepo = ref.watch(checkInRepositoryProvider);
+    final placeRepo = ref.watch(placeRepositoryProvider);
+    final since = DateTime.now().subtract(Duration(days: params.daysBack));
+
+    final events = await checkInRepo.getEventsForUser(
+      params.userId,
+      since: since,
+    );
+
+    final placeIds = events.map((e) => e.placeId).toSet();
+    final places = await Future.wait(
+      placeIds.map((id) => placeRepo.getPlaceById(id)),
+    );
+    final placeMap = Map.fromIterables(
+      placeIds,
+      places.map((p) => p?.name),
+    );
+
+    final sorted = [...events]
+      ..sort((a, b) => b.timestamp.compareTo(a.timestamp));
+    return sorted.map((e) => (e, placeMap[e.placeId])).toList();
+  },
+);

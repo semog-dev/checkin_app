@@ -28,8 +28,34 @@ void main() {
         expect(AppRoutes.groupDetail, contains(':id'));
       });
 
+      test('groupMemberHistory contém parâmetros :groupId e :memberId', () {
+        expect(AppRoutes.groupMemberHistory, contains(':groupId'));
+        expect(AppRoutes.groupMemberHistory, contains(':memberId'));
+      });
+
       test('settings', () {
         expect(AppRoutes.settings, '/settings');
+      });
+    });
+
+    group('groupMemberHistoryPath', () {
+      test('monta caminho com groupId e memberId', () {
+        expect(
+          AppRoutes.groupMemberHistoryPath('g1', 'u1'),
+          '/groups/g1/member/u1',
+        );
+      });
+
+      test('monta caminho com ids distintos', () {
+        expect(
+          AppRoutes.groupMemberHistoryPath('grupo-abc', 'user-xyz'),
+          '/groups/grupo-abc/member/user-xyz',
+        );
+      });
+
+      test('caminho gerado começa com /', () {
+        final path = AppRoutes.groupMemberHistoryPath('g1', 'u1');
+        expect(path, startsWith('/'));
       });
     });
 
@@ -42,6 +68,7 @@ void main() {
           AppRoutes.placeDetail,
           AppRoutes.addPlace,
           AppRoutes.groupDetail,
+          AppRoutes.groupMemberHistory,
           AppRoutes.settings,
         ];
 
@@ -58,13 +85,14 @@ void main() {
           AppRoutes.placeDetail,
           AppRoutes.addPlace,
           AppRoutes.groupDetail,
+          AppRoutes.groupMemberHistory,
           AppRoutes.settings,
         ];
 
         expect(routes.toSet().length, routes.length);
       });
 
-      test('total de 7 rotas definidas', () {
+      test('total de 8 rotas definidas', () {
         final routes = [
           AppRoutes.splash,
           AppRoutes.login,
@@ -72,10 +100,11 @@ void main() {
           AppRoutes.placeDetail,
           AppRoutes.addPlace,
           AppRoutes.groupDetail,
+          AppRoutes.groupMemberHistory,
           AppRoutes.settings,
         ];
 
-        expect(routes, hasLength(7));
+        expect(routes, hasLength(8));
       });
     });
   });

@@ -1,8 +1,10 @@
 import 'package:checkin_app/features/group/presentation/providers/group_provider.dart';
 import 'package:checkin_app/features/group/presentation/widgets/member_status_tile.dart';
+import 'package:core/core.dart' show AppRoutes;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class GroupDetailPage extends ConsumerWidget {
   const GroupDetailPage({super.key, required this.groupId});
@@ -43,7 +45,7 @@ class GroupDetailPage extends ConsumerWidget {
           _InviteCard(inviteCode: group.inviteCode),
           const Divider(height: 1),
           Expanded(
-            child: _MemberList(memberIds: group.memberIds),
+            child: _MemberList(groupId: groupId, memberIds: group.memberIds),
           ),
         ],
       ),
@@ -95,7 +97,8 @@ class _InviteCard extends StatelessWidget {
 }
 
 class _MemberList extends ConsumerWidget {
-  const _MemberList({required this.memberIds});
+  const _MemberList({required this.groupId, required this.memberIds});
+  final String groupId;
   final List<String> memberIds;
 
   @override
@@ -105,6 +108,7 @@ class _MemberList extends ConsumerWidget {
     return ListView.builder(
       itemCount: memberIds.length,
       itemBuilder: (context, i) {
+        final memberId = memberIds[i];
         final value = memberValues[i];
         return value.when(
           loading: () => const ListTile(
@@ -114,7 +118,12 @@ class _MemberList extends ConsumerWidget {
           error: (e, _) => ListTile(title: Text('Erro: $e')),
           data: (profile) {
             if (profile == null) return const SizedBox.shrink();
-            return MemberStatusTile(profile: profile);
+            return MemberStatusTile(
+              profile: profile,
+              onTap: () => context.push(
+                AppRoutes.groupMemberHistoryPath(groupId, memberId),
+              ),
+            );
           },
         );
       },

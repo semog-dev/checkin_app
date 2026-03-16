@@ -10,5 +10,9 @@ abstract final class AppRoutes {
   static const createGroup = '/groups/create';
   static const joinGroup = '/groups/join';
   static const groupDetail = '/groups/:id';
+  static const groupMemberHistory = '/groups/:groupId/member/:memberId';
   static const settings = '/settings';
+
+  static String groupMemberHistoryPath(String groupId, String memberId) =>
+      '/groups/$groupId/member/$memberId';
 }

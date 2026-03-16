@@ -6,14 +6,17 @@ class MemberStatusTile extends StatelessWidget {
     super.key,
     required this.profile,
     this.placeName,
+    this.onTap,
   });
 
   final UserProfile profile;
   final String? placeName;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: onTap,
       leading: CircleAvatar(
         backgroundImage: profile.photoUrl != null
             ? NetworkImage(profile.photoUrl!)

@@ -4,6 +4,7 @@ import 'package:checkin_app/features/auth/presentation/pages/register_page.dart'
 import 'package:checkin_app/features/auth/presentation/providers/auth_provider.dart';
 import 'package:checkin_app/features/group/presentation/pages/create_group_page.dart';
 import 'package:checkin_app/features/group/presentation/pages/group_detail_page.dart';
+import 'package:checkin_app/features/group/presentation/pages/group_member_history_page.dart';
 import 'package:checkin_app/features/group/presentation/pages/groups_page.dart';
 import 'package:checkin_app/features/group/presentation/pages/join_group_page.dart';
 import 'package:checkin_app/features/places/presentation/pages/add_place_page.dart';
@@ -70,6 +71,13 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: AppRoutes.groupDetail,
         builder: (_, state) => GroupDetailPage(
           groupId: state.pathParameters['id']!,
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.groupMemberHistory,
+        builder: (_, state) => GroupMemberHistoryPage(
+          groupId: state.pathParameters['groupId']!,
+          memberId: state.pathParameters['memberId']!,
         ),
       ),
       GoRoute(
